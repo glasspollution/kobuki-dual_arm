@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<!--
+  Kobuki-based dual-arm mobile manipulator.
+
+  All vertical dimensions are GROUND-REFERENCED (base_link origin sits at
+  ground level, directly under the base center) to match the design sheet:
+
+    base radius            0.1775 m   (Kobuki: 354 mm dia)
+    base body top          0.125  m   (Kobuki height)
+    arm mount deck top     0.14   m   (12.5 cm base + 1.5 cm standoff)
+    shoulder pitch (J2)    0.18   m   (deck + 4 cm riser)
+    upper arm L1           0.16   m
+    forearm  L2            0.16   m
+    grasp point offset Lg  0.07   m   (J4 wrist -> object center between finger pads)
+    arm mounts             (x +0.095, y ±0.08875) from base center
+    camera                 z 0.42, pitched down 15 deg, on rear mast
+    lidar                  z 0.46 (above the arm workspace envelope)
+-->
+<robot name="kobuki_bimanual" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <!-- The compact stationary demo pitches the camera farther down so the
+       arm-reachable floor annulus is visible.  The normal mobile demo keeps
+       the original 15 degree default. -->
+  <xacro:arg name="cam_pitch" default="0.2618"/>
+
+  <!-- ==================== geometry constants ==================== -->
+  <xacro:property name="PI"             value="3.14159265358979"/>
+  <xacro:property name="base_radius"    value="0.1775"/>
+  <xacro:property name="base_body_z0"   value="0.020"/>   <!-- ground clearance -->
+  <xacro:property name="base_body_top"  value="0.125"/>
+  <xacro:property name="deck_top_z"     value="0.140"/>
+  <xacro:property name="wheel_radius"   value="0.038"/>
+  <xacro:property name="wheel_width"    value="0.030"/>
+  <xacro:property name="wheel_sep"      value="0.230"/>
+  <xacro:property name="caster_radius"  value="0.019"/>
+
+  <xacro:property name="arm_mount_x"    value="0.095"/>
+  <xacro:property name="arm_mount_y"    value="0.08875"/>
+  <xacro:property name="shoulder_z"     value="0.180"/>
+  <xacro:property name="L1"             value="0.160"/>
+  <xacro:property name="L2"             value="0.160"/>
+
+  <xacro:property name="mast_x"         value="-0.100"/>
+  <xacro:property name="lidar_z"        value="0.460"/>
+  <xacro:property name="cam_x"          value="-0.075"/>
+  <xacro:property name="cam_z"          value="0.420"/>
+  <xacro:property name="cam_pitch"      value="$(arg cam_pitch)"/>
+
+  <!-- joint limits -->
+  <xacro:property name="yaw_lim"        value="2.618"/>   <!-- ±150 deg -->
+  <xacro:property name="pitch_lim"      value="2.0"/>     <!-- ±115 deg -->
+  <xacro:property name="finger_travel"  value="0.065"/>
+
+  <!-- ==================== materials ==================== -->
+  <material name="dark_grey"><color rgba="0.15 0.15 0.15 1"/></material>
+  <material name="light_grey"><color rgba="0.6 0.6 0.6 1"/></material>
+  <material name="red_accent"><color rgba="0.7 0.1 0.1 1"/></material>
+  <material name="arm_blue"><color rgba="0.42 0.45 0.50 1"/></material>
+  <material name="black"><color rgba="0.05 0.05 0.05 1"/></material>
+
+  <!-- ==================== sub-files ==================== -->
+  <xacro:include filename="$(find kobuki_bimanual_description)/urdf/base.xacro"/>
+  <xacro:include filename="$(find kobuki_bimanual_description)/urdf/mast_sensors.xacro"/>
+  <xacro:include filename="$(find kobuki_bimanual_description)/urdf/arm.xacro"/>
+  <xacro:include filename="$(find kobuki_bimanual_description)/urdf/ros2_control.xacro"/>
+  <xacro:include filename="$(find kobuki_bimanual_description)/urdf/gazebo_plugins.xacro"/>
+
+  <!-- ==================== assembly ==================== -->
+  <xacro:kobuki_base/>
+  <xacro:mast_sensors/>
+  <xacro:arm_4dof side="left"  reflect="1"/>
+  <xacro:arm_4dof side="right" reflect="-1"/>
+  <xacro:bimanual_ros2_control/>
+  <xacro:bimanual_gazebo/>
+
+</robot>

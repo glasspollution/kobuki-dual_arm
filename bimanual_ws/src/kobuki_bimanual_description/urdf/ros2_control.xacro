@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="ctrl_joint" params="name">
+    <joint name="${name}">
+      <command_interface name="position"/>
+      <state_interface name="position"><param name="initial_value">0.0</param></state_interface>
+      <state_interface name="velocity"/>
+    </joint>
+  </xacro:macro>
+
+  <xacro:macro name="bimanual_ros2_control">
+    <ros2_control name="GazeboSimSystem" type="system">
+      <hardware>
+        <plugin>gz_ros2_control/GazeboSimSystem</plugin>
+        <!-- Joint tracking gain. Declared in BOTH places on purpose: this
+             hardware <param> is the documented location, while the
+             <position_proportional_gain> element in gazebo_plugins.xacro is
+             the form verified to take effect on the target machine. Keep the
+             two values identical - see gazebo_plugins.xacro for the tuning
+             rationale. -->
+        <param name="position_proportional_gain">2.0</param>
+      </hardware>
+
+      <xacro:ctrl_joint name="left_j1"/>
+      <xacro:ctrl_joint name="left_j2"/>
+      <xacro:ctrl_joint name="left_j3"/>
+      <xacro:ctrl_joint name="left_j4"/>
+      <xacro:ctrl_joint name="right_j1"/>
+      <xacro:ctrl_joint name="right_j2"/>
+      <xacro:ctrl_joint name="right_j3"/>
+      <xacro:ctrl_joint name="right_j4"/>
+
+      <joint name="left_finger_l_joint">
+        <command_interface name="position"/>
+        <state_interface name="position"><param name="initial_value">0.060</param></state_interface>
+        <state_interface name="velocity"/>
+      </joint>
+      <joint name="left_finger_r_joint">
+        <command_interface name="position"/>
+        <state_interface name="position"><param name="initial_value">0.060</param></state_interface>
+        <state_interface name="velocity"/>
+      </joint>
+      <joint name="right_finger_l_joint">
+        <command_interface name="position"/>
+        <state_interface name="position"><param name="initial_value">0.060</param></state_interface>
+        <state_interface name="velocity"/>
+      </joint>
+      <joint name="right_finger_r_joint">
+        <command_interface name="position"/>
+        <state_interface name="position"><param name="initial_value">0.060</param></state_interface>
+        <state_interface name="velocity"/>
+      </joint>
+    </ros2_control>
+  </xacro:macro>
+</robot>

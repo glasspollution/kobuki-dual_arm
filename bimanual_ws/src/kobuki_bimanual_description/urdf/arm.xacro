@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+<!--
+  4-DOF arm macro:  J1 yaw -> 4 cm riser -> J2 pitch -> L1 -> J3 pitch -> L2
+  -> J4 pitch -> palm + 2 prismatic fingers.
+
+  Conventions (must match kobuki_bimanual_behavior/ik.py):
+   * zero pose: arm stretched horizontally along the yawed +x direction
+   * positive pitch rotates the arm DOWN (right-hand rule about +y)
+   * finger joints: positive value = fingers OPEN (each moves outward by q)
+   * grasp point: 0.07 m from J4 along the end-effector +x axis
+-->
+  <xacro:macro name="arm_4dof" params="side reflect">
+
+    <!-- riser / shoulder yaw -->
+    <link name="${side}_shoulder_link">
+      <visual>
+        <origin xyz="0 0 0.02"/>
+        <geometry><cylinder radius="0.018" length="0.04"/></geometry>
+        <material name="arm_blue"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.02"/>
+        <geometry><cylinder radius="0.018" length="0.04"/></geometry>
+      </collision>
+      <xacro:cyl_inertial m="0.12" r="0.018" h="0.04">
+        <origin xyz="0 0 0.02"/>
+      </xacro:cyl_inertial>
+    </link>
+    <joint name="${side}_j1" type="revolute">
+      <parent link="base_link"/>
+      <child link="${side}_shoulder_link"/>
+      <origin xyz="${arm_mount_x} ${reflect*arm_mount_y} ${deck_top_z}"/>
+      <axis xyz="0 0 1"/>
+      <limit lower="${-yaw_lim}" upper="${yaw_lim}" effort="6.0" velocity="3.0"/>
+      <dynamics damping="0.3" friction="0.05"/>
+    </joint>
+
+    <!-- upper arm: J2 at shoulder_z (0.18 AGL) -->
+    <link name="${side}_upper_arm_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+        <geometry><cylinder radius="0.022" length="0.05"/></geometry>
+        <material name="dark_grey"/>
+      </visual>
+      <visual>
+        <origin xyz="${L1/2} 0 0"/>
+        <geometry><box size="${L1} 0.045 0.032"/></geometry>
+        <material name="arm_blue"/>
+      </visual>
+      <collision>
+        <origin xyz="${L1/2} 0 0"/>
+        <geometry><box size="${L1} 0.045 0.032"/></geometry>
+      </collision>
+      <xacro:box_inertial m="0.16" x="${L1}" y="0.045" z="0.032">
+        <origin xyz="${L1/2} 0 0"/>
+      </xacro:box_inertial>
+    </link>
+    <joint name="${side}_j2" type="revolute">
+      <parent link="${side}_shoulder_link"/>
+      <child link="${side}_upper_arm_link"/>
+      <origin xyz="0 0 ${shoulder_z - deck_top_z}"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="${-pitch_lim}" upper="${pitch_lim}" effort="6.0" velocity="3.0"/>
+      <dynamics damping="0.3" friction="0.05"/>
+    </joint>
+
+    <!-- forearm -->
+    <link name="${side}_forearm_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+        <geometry><cylinder radius="0.02" length="0.048"/></geometry>
+        <material name="dark_grey"/>
+      </visual>
+      <visual>
+        <origin xyz="${L2/2} 0 0"/>
+        <geometry><box size="${L2} 0.04 0.028"/></geometry>
+        <material name="arm_blue"/>
+      </visual>
+      <collision>
+        <origin xyz="${L2/2} 0 0"/>
+        <geometry><box size="${L2} 0.04 0.028"/></geometry>
+      </collision>
+      <xacro:box_inertial m="0.15" x="${L2}" y="0.04" z="0.028">
+        <origin xyz="${L2/2} 0 0"/>
+      </xacro:box_inertial>
+    </link>
+    <joint name="${side}_j3" type="revolute">
+      <parent link="${side}_upper_arm_link"/>
+      <child link="${side}_forearm_link"/>
+      <origin xyz="${L1} 0 0"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="${-pitch_lim}" upper="${pitch_lim}" effort="6.0" velocity="3.0"/>
+      <dynamics damping="0.3" friction="0.05"/>
+    </joint>
+
+    <!-- wrist + palm -->
+    <link name="${side}_palm_link">
+      <visual>
+        <origin xyz="0 0 0" rpy="${PI/2} 0 0"/>
+        <geometry><cylinder radius="0.018" length="0.045"/></geometry>
+        <material name="dark_grey"/>
+      </visual>
+      <visual>
+        <origin xyz="0.0175 0 0"/>
+        <geometry><box size="0.025 0.145 0.045"/></geometry>
+        <material name="arm_blue"/>
+      </visual>
+      <collision>
+        <origin xyz="0.0175 0 0"/>
+        <geometry><box size="0.025 0.145 0.045"/></geometry>
+      </collision>
+      <xacro:box_inertial m="0.10" x="0.025" y="0.145" z="0.045">
+        <origin xyz="0.0175 0 0"/>
+      </xacro:box_inertial>
+    </link>
+    <joint name="${side}_j4" type="revolute">
+      <parent link="${side}_forearm_link"/>
+      <child link="${side}_palm_link"/>
+      <origin xyz="${L2} 0 0"/>
+      <axis xyz="0 1 0"/>
+      <limit lower="${-pitch_lim}" upper="${pitch_lim}" effort="4.0" velocity="3.0"/>
+      <dynamics damping="0.3" friction="0.05"/>
+    </joint>
+
+    <!-- fingers: prismatic, positive = open; padded high-friction jaws -->
+    <xacro:macro name="finger" params="side fprefix faxis">
+      <link name="${side}_finger_${fprefix}_link">
+        <visual>
+          <origin xyz="0.0375 0 0"/>
+          <geometry><box size="0.075 0.012 0.03"/></geometry>
+          <material name="black"/>
+        </visual>
+        <collision>
+          <origin xyz="0.0375 0 0"/>
+          <geometry><box size="0.075 0.012 0.03"/></geometry>
+        </collision>
+        <inertial>
+          <mass value="0.02"/>
+          <inertia ixx="8e-6" iyy="8e-6" izz="8e-6" ixy="0" ixz="0" iyz="0"/>
+        </inertial>
+      </link>
+      <joint name="${side}_finger_${fprefix}_joint" type="prismatic">
+        <parent link="${side}_palm_link"/>
+        <child link="${side}_finger_${fprefix}_link"/>
+        <origin xyz="0.03 0 0"/>
+        <axis xyz="0 ${faxis} 0"/>
+        <limit lower="0.008" upper="${finger_travel}" effort="30.0" velocity="0.2"/>
+        <dynamics damping="0.5" friction="0.1"/>
+      </joint>
+      <gazebo reference="${side}_finger_${fprefix}_link">
+        <mu1>1.8</mu1><mu2>1.8</mu2>
+      </gazebo>
+    </xacro:macro>
+    <xacro:finger side="${side}" fprefix="l" faxis="1"/>
+    <xacro:finger side="${side}" fprefix="r" faxis="-1"/>
+
+  </xacro:macro>
+</robot>

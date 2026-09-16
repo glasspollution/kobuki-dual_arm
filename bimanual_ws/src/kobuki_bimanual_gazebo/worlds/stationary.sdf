@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <world name="bimanual_stationary">
+    <physics name="step" type="ignored">
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1.0</real_time_factor>
+    </physics>
+    <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
+    <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
+    <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
+    <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
+      <render_engine>ogre2</render_engine>
+    </plugin>
+
+    <light type="directional" name="sun">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose>
+      <diffuse>0.9 0.9 0.9 1</diffuse>
+      <specular>0.2 0.2 0.2 1</specular>
+      <direction>-0.4 0.2 -0.9</direction>
+    </light>
+
+    <model name="ground_plane">
+      <static>true</static>
+      <link name="link">
+        <collision name="col">
+          <geometry><plane><normal>0 0 1</normal><size>6 6</size></plane></geometry>
+          <surface><friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction></surface>
+        </collision>
+        <visual name="vis">
+          <geometry><plane><normal>0 0 1</normal><size>6 6</size></plane></geometry>
+          <material><ambient>0.85 0.85 0.85 1</ambient><diffuse>0.85 0.85 0.85 1</diffuse></material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- Shelf centre is exactly one grasp radius behind the spawn point.
+         Its three drop slots lie on the r=0.30 m arc across the slab. -->
+    <include>
+      <uri>model://stationary_shelf</uri>
+      <name>stationary_shelf</name>
+      <pose>-0.30 0 0 0 0 0</pose>
+    </include>
+
+    <!-- All objects start at r=0.30 m with their long axes radial.  Their
+         order around the base is chosen so every loaded CCW turn has a clear
+         sweep to the shelf. -->
+    <include>
+      <uri>model://bottle</uri>
+      <name>bottle</name>
+      <pose>0.150000 0.259808 0.031 0 1.5708 1.0472</pose>
+    </include>
+    <include>
+      <uri>model://bowl</uri>
+      <name>bowl</name>
+      <pose>0.300000 0.000000 0.041 0 1.5708 0.0000</pose>
+    </include>
+    <include>
+      <uri>model://cracker_box</uri>
+      <name>cracker_box</name>
+      <pose>0.150000 -0.259808 0.031 0 1.5708 -1.0472</pose>
+    </include>
+  </world>
+</sdf>

@@ -1,0 +1,816 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 17 /Kids [4 0 R 6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R 18 0 R 20 0 R 22 0 R 24 0 R 26 0 R 28 0 R 30 0 R 32 0 R 34 0 R 36 0 R] >>
+endobj
+3 0 obj
+<< /Font << /F1 38 0 R /F2 39 0 R /F3 40 0 R >> >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 1978 >>
+stream
+0.990 0.990 1.000 rg 0.0 0.0 792.0 612.0 re f
+0.070 0.130 0.260 rg 0.0 362.0 792.0 250.0 re f
+BT /F2 34.0 Tf 1.000 1.000 1.000 rg 60.0 516.0 Td (DUAL-ARM COLLABORATIVE) Tj ET
+BT /F2 34.0 Tf 1.000 1.000 1.000 rg 60.0 474.0 Td (MANIPULATION) Tj ET
+0.450 0.620 0.850 rg 60.0 452.5 120.0 3.5 re f
+BT /F1 14.0 Tf 0.720 0.800 0.900 rg 60.0 422.0 Td (Kobuki-Based Mobile Bimanual Manipulator) Tj ET
+BT /F1 12.0 Tf 0.600 0.700 0.840 rg 60.0 402.0 Td (Gazebo Harmonic Simulation  |  ROS 2 Jazzy) Tj ET
+BT /F2 12.5 Tf 0.160 0.330 0.550 rg 60.0 311.5 Td (Perception  ->  Approach  ->  Align  ->  IK Grasp  ->  Co-Manipulation  ->  Reorientation  ->  Placement) Tj ET
+BT /F1 11.5 Tf 0.130 0.130 0.130 rg 60.0 270.5 Td (An autonomous mobile manipulator that surveys a room, identifies everyday objects lying in an unstable orientation, drives to them,) Tj ET
+BT /F1 11.5 Tf 0.130 0.130 0.130 rg 60.0 254.6 Td (grasps them with two cooperating 4-DOF arms, rotates them upright in mid-air, and places them standing on a shelf - repeating the) Tj ET
+BT /F1 11.5 Tf 0.130 0.130 0.130 rg 60.0 238.8 Td (cycle for every fallen object it has detected.) Tj ET
+BT /F2 10.0 Tf 0.100 0.200 0.350 rg 46.0 172.0 Td (Simulation stack) Tj ET
+BT /F1 10.0 Tf 0.150 0.150 0.150 rg 204.0 172.0 Td (ROS 2 Jazzy, Gazebo Harmonic \(gz-sim 8\), gz_ros2_control, Pop!_OS 24.04) Tj ET
+BT /F2 10.0 Tf 0.100 0.200 0.350 rg 46.0 156.6 Td (Workspace) Tj ET
+BT /F1 10.0 Tf 0.150 0.150 0.150 rg 204.0 156.6 Td (bimanual_ws - 3 ROS 2 packages, 4 simulation worlds, 2 autonomous nodes) Tj ET
+BT /F2 10.0 Tf 0.100 0.200 0.350 rg 46.0 141.2 Td (Document scope) Tj ET
+BT /F1 10.0 Tf 0.150 0.150 0.150 rg 204.0 141.2 Td (Design, implementation, runtime workflow, verification status and open issues) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 733.5 22.0 Td (p. 1) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 4617 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (1.  Objective and Task Definition) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (What the system is required to do, and the seven phases it is decomposed into) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 505.5 Td (Real-world task) Tj ET
+BT /F1 10.2 Tf 0.130 0.130 0.130 rg 46.0 488.3 Td (Locate a daily object that has fallen over somewhere in a room, retrieve it with two arms working together, correct its orientation in mid-air so that its stable) Tj ET
+BT /F1 10.2 Tf 0.130 0.130 0.130 rg 46.0 474.2 Td (base faces downwards, and set it upright on a designated shelf. The value of the bimanual arrangement is precisely the mid-air reorientation: a single) Tj ET
+BT /F1 10.2 Tf 0.130 0.130 0.130 rg 46.0 460.1 Td (4-DOF arm cannot rotate a held object about a horizontal axis without releasing it.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 434.8 Td (Phase decomposition implemented in simulation) Tj ET
+0.900 0.930 0.970 rg 46.0 410.4 700.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 50.0 416.2 Td (#) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 78.0 416.2 Td (Phase) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 190.0 416.2 Td (What happens) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 512.0 416.2 Td (Responsible component) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 399.8 Td (1) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 399.8 Td (SEARCH) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 399.8 Td (Full survey rotation; every object colour seen is recorded) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 512.0 399.8 Td (mission_node.rotate_by + perception_node) Tj ET
+0.972 0.975 0.980 rg 46.0 380.7 700.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 384.5 Td (2) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 384.5 Td (APPROACH) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 384.5 Td (Visual servo toward the target; blind odometry creep for the final stretch) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 512.0 384.5 Td (mission_node.approach) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 369.1 Td (3) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 369.1 Td (ALIGN) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 369.1 Td (Bearing driven to zero before the creep so the object axis stays aligned) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 512.0 369.1 Td (mission_node.center_on) Tj ET
+0.972 0.975 0.980 rg 46.0 350.0 700.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 353.8 Td (4) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 353.8 Td (IK GRASP) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 353.8 Td (Both grippers descend from above onto the lying object and close) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 512.0 353.8 Td (choreography.grasp_waypoints + ik.solve) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 338.4 Td (5) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 338.4 Td (CO-MANIPULATION) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 338.4 Td (A rigid constraint binds the object to the gripper; both arms move as one) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 512.0 338.4 Td (DetachableJoint + mission_node.set_grasp) Tj ET
+0.972 0.975 0.980 rg 46.0 319.3 700.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 323.1 Td (6) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 323.1 Td (REORIENTATION) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 323.1 Td (Two-phase lift then 90 deg pitch flip to upright) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 512.0 323.1 Td (choreography.flip_waypoints) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 307.7 Td (7) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 307.7 Td (PLACEMENT) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 307.7 Td (LiDAR-docked approach to the shelf, lower, release, retract, back away) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 512.0 307.7 Td (mission_node.dock_to_shelf + place_waypoints) Tj ET
+0.930 0.950 0.990 rg 46.0 241.5 700.0 53.5 re f
+0.200 0.400 0.700 rg 46.0 241.5 3.5 53.5 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 58.0 278.0 Td (Scope of autonomy) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 58.0 264.5 Td (One launch command runs the entire cycle for three different objects in sequence with no operator input: detection, navigation, grasping, reorientation, placement) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 58.0 251.3 Td (and recovery from per-object failures are all closed-loop.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 733.5 22.0 Td (p. 2) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 3852 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (2.  Platform Geometry - as Built from the Design Blueprint) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (Every dimension below is a single named constant in robot.urdf.xacro, reused by the kinematics module) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 46.0 511.5 Td (Base and deck) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 46.0 497.3 Td (Base radius) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 194.0 497.3 Td (0.1775 m \(Kobuki, 354 mm dia.\)) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 46.0 483.0 Td (Base body height) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 194.0 483.0 Td (0.125 m) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 46.0 468.6 Td (Arm mounting deck) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 194.0 468.6 Td (0.140 m AGL \(base + 15 mm standoff\)) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 46.0 454.3 Td (Drive wheels) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 194.0 454.3 Td (r = 0.038 m, separation 0.230 m, diff-drive) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 46.0 440.0 Td (Casters) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 194.0 440.0 Td (front/rear spheres at +/-0.15 m, frictionless) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 46.0 420.4 Td (Arm pair \(4-DOF each\)) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 46.0 406.2 Td (Mount positions) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 194.0 406.2 Td (x = +0.095 m, y = +/-0.08875 m \(r = 0.130 m, separation 0.1775 m\)) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 46.0 391.8 Td (Shoulder pitch axis) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 194.0 391.8 Td (0.180 m AGL \(deck + 40 mm riser\)) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 46.0 377.5 Td (Link lengths) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 194.0 377.5 Td (L1 = L2 = 0.160 m; grasp point 0.070 m beyond the wrist) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 46.0 363.2 Td (Geometric max reach) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 194.0 363.2 Td (0.320 m; practical band 0.20-0.25 m) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 46.0 348.8 Td (Joint limits) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 194.0 348.8 Td (yaw +/-150 deg, three pitches +/-115 deg) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 46.0 334.5 Td (Gripper) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 194.0 334.5 Td (two prismatic fingers, 75 mm long, 8-65 mm travel, high-friction pads) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 46.0 314.9 Td (Sensor mast - twin rods per the blueprint top view) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 46.0 300.7 Td (Rods) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 194.0 300.7 Td (two vertical posts, each 0.14 m from base centre on the rear half, symmetric about the centreline, joined by a crossbar) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 46.0 286.4 Td (2D LiDAR) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 194.0 286.4 Td (0.46 m AGL, 360 samples, 0.12-8.0 m) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 46.0 272.0 Td (RGB camera) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 194.0 272.0 Td (0.42 m AGL, pitched 15 deg down, 640x480, 69 deg HFOV) Tj ET
+0.910 0.960 0.910 rg 46.0 209.4 700.0 53.5 re f
+0.200 0.550 0.280 rg 46.0 209.4 3.5 53.5 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 58.0 245.9 Td (Payload and object envelope) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 58.0 232.4 Td (Payload target <= 500 g against a Kobuki-class capacity of ~5 kg. Objects handled: 60 mm dia. x 200 mm bottle \(150 g\), 80 mm dia. x 100 mm cup-bowl \(200 g\),) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 58.0 219.2 Td (60 x 80 x 180 mm box \(250 g\) - all inside the 5-18 cm diameter, 5-25 cm height envelope of the design sheet.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 733.5 22.0 Td (p. 3) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 3830 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (3.  Software Architecture) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (Three ROS 2 packages with a strict separation between description, simulation assets and autonomy) Tj ET
+0.900 0.930 0.970 rg 46.0 504.6 700.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 50.0 510.4 Td (Package) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 197.0 510.4 Td (Build type) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 260.0 510.4 Td (Contents) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 512.0 510.4 Td (Role) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 494.0 Td (kobuki_bimanual_description) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 197.0 494.0 Td (ament_cmake) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 260.0 494.0 Td (robot.urdf.xacro, base.xacro, mast_sensors.xacro, arm.xacro,) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 260.0 482.7 Td (ros2_control.xacro, gazebo_plugins.xacro, controllers.yaml) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 512.0 494.0 Td (Single source of truth for geometry, sensors, hardware) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 512.0 482.7 Td (interfaces and controller configuration) Tj ET
+0.972 0.975 0.980 rg 46.0 452.2 700.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 467.3 Td (kobuki_bimanual_gazebo) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 197.0 467.3 Td (ament_cmake) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 260.0 467.3 Td (4 worlds \(main + one per object\), 4 models \(bottle, bowl,) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 260.0 456.0 Td (cracker_box, shelf\), sim.launch.py) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 512.0 467.3 Td (Simulation environment and the single bring-up launch file) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 512.0 456.0 Td (that starts and orders every process) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 440.6 Td (kobuki_bimanual_behavior) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 197.0 440.6 Td (ament_python) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 260.0 440.6 Td (ik.py, choreography.py, arm_commander.py,) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 260.0 429.3 Td (perception_node.py, mission_node.py, mission_params.yaml,) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 260.0 417.9 Td (test_ik.py) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 512.0 440.6 Td (All autonomy: perception, analytic kinematics, bimanual) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 512.0 429.3 Td (trajectory generation, mission state machine, offline test) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 512.0 417.9 Td (suite) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 388.7 Td (Design principles applied) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 371.9 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 371.9 Td (Geometry is declared once. The kinematics module mirrors the URDF constants and an offline test asserts that every motion the mission can command is) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 358.6 Td (reachable within the declared joint limits.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 342.2 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 342.2 Td (Autonomy is pure Python and simulator-independent: kinematics and choreography carry no ROS or Gazebo imports, so they are unit testable without) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 328.9 Td (starting a simulation.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 312.6 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 312.6 Td (All tunable numbers - HSV ranges, grasp offsets, stand-off distances, placement positions, speed caps - live in one parameter file, not in code.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 733.5 22.0 Td (p. 4) Tj ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 13 0 R >>
+endobj
+13 0 obj
+<< /Length 4714 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (4.  Runtime Process and Node Map) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (Which process is responsible for what, and the interfaces between them) Tj ET
+0.900 0.930 0.970 rg 46.0 504.6 700.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 50.0 510.4 Td (Process / node) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 190.0 510.4 Td (Responsibility) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 428.0 510.4 Td (Consumes) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 582.0 510.4 Td (Produces) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 494.0 Td (gz sim \(server + GUI\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 494.0 Td (Rigid-body physics, contact, gravity, sensor rendering; hosts) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 482.7 Td (the DiffDrive, DetachableJoint and gz_ros2_control plugins) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 428.0 494.0 Td (joint commands, wheel twist) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 582.0 494.0 Td (sensor data, poses, clock) Tj ET
+0.972 0.975 0.980 rg 46.0 452.2 700.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 467.3 Td (robot_state_publisher) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 467.3 Td (Expands the xacro and publishes the robot model and) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 456.0 Td (kinematic TF tree) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 428.0 467.3 Td (/robot_description) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 582.0 467.3 Td (/tf, /tf_static) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 440.6 Td (ros_gz_sim create) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 440.6 Td (Spawns the robot into the running world, then exits) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 428.0 440.6 Td (/robot_description) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 582.0 440.6 Td (spawn request) Tj ET
+0.972 0.975 0.980 rg 46.0 410.2 700.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 425.3 Td (ros_gz_bridge) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 425.3 Td (Translates every Gazebo transport topic to and from ROS 2) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 428.0 425.3 Td (gz topics) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 582.0 425.3 Td (/clock /scan /camera /camera_info /odom) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 582.0 413.9 Td (/tf, grasp state) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 398.6 Td (controller_manager \(in-process\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 398.6 Td (Loads and activates four controllers over 12 joint interfaces) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 428.0 398.6 Td (controllers.yaml) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 582.0 398.6 Td (/joint_states, joint position commands) Tj ET
+0.972 0.975 0.980 rg 46.0 368.1 700.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 383.2 Td (perception_node) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 383.2 Td (Colour segmentation, ground-plane ranging, lying-vs-upright) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 371.9 Td (estimation) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 428.0 383.2 Td (/camera, /camera_info) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 582.0 383.2 Td (/detections \(JSON\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 356.5 Td (mission_node) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 356.5 Td (The mission state machine: survey, approach, grasp,) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 190.0 345.2 Td (reorient, dock, place, recover) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 428.0 356.5 Td (/detections /odom /joint_states /scan) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 428.0 345.2 Td (/grasp/*/state) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 582.0 356.5 Td (/cmd_vel, arm trajectories, gripper) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 582.0 345.2 Td (commands, attach & detach) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 315.9 Td (Controllers) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 46.0 299.6 Td (joint_state_broadcaster) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 264.0 299.6 Td (publishes all 12 joint states at 200 Hz) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 46.0 285.2 Td (left_arm_controller / right_arm_controller) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 264.0 285.2 Td (JointTrajectoryController, spline interpolation, 4 joints each) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 46.0 270.7 Td (gripper_controller) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 264.0 270.7 Td (JointGroupPositionController over the four prismatic finger joints) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 733.5 22.0 Td (p. 5) Tj ET
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 15 0 R >>
+endobj
+15 0 obj
+<< /Length 4138 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (5.  Simulation Workflow \(1 of 2\) - Bring-up and Target Acquisition) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (Deterministic ordering is enforced; nothing begins before the previous stage is confirmed) Tj ET
+0.900 0.930 0.970 rg 46.0 504.6 700.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 50.0 510.4 Td (Stage) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 141.0 510.4 Td (What the robot does) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 484.0 510.4 Td (Code path) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 494.0 Td (Launch) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 494.0 Td (World loads, robot is spawned, bridges open) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 494.0 Td (sim.launch.py: gz_sim include, create, parameter_bridge) Tj ET
+0.972 0.975 0.980 rg 46.0 474.9 700.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 478.7 Td (Controller bring-up) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 478.7 Td (Four controllers are activated strictly one after another) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 478.7 Td (sim.launch.py: chain of four OnProcessExit handlers) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 463.3 Td (Readiness gate) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 463.3 Td (Mission waits until all 12 joints report state) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 463.3 Td (mission_node.run: wait on ARM_JOINTS) Tj ET
+0.972 0.975 0.980 rg 46.0 444.2 700.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 448.0 Td (Startup safety) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 448.0 Td (All grasp constraints released with confirmation, grippers opened, arms tucked) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 448.0 Td (set_grasp\(..., False\), grippers\(\), tuck\(\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 432.6 Td (SEARCH) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 432.6 Td (One full survey rotation \(360 deg + 17 deg overlap\) recording every colour seen) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 432.6 Td (rotate_by\(2*pi + 0.3, note_seen=...\)) Tj ET
+0.972 0.975 0.980 rg 46.0 413.5 700.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 417.3 Td (Per object: re-centre) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 417.3 Td (Robot returns to a central scan hub so every approach direction is repeatable) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 417.3 Td (goto\(scan_hub\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 401.9 Td (Reacquire) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 401.9 Td (Rotates until four consecutive detections of that specific colour; a second vantage point) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 390.6 Td (is tried if needed) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 401.9 Td (rotate_until_found, then goto\(0.45, 0\)) Tj ET
+0.972 0.975 0.980 rg 46.0 371.5 700.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 375.2 Td (Triage) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 375.2 Td (Objects already standing are skipped using the estimated physical height) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 375.2 Td (est_h >= 0.7 * upright_h) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 359.9 Td (APPROACH) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 359.9 Td (Visual servo until 0.55 m, precise re-centre, then blind odometry creep to the 0.30 m) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 348.5 Td (grasp stand-off) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 359.9 Td (approach\(\): centre_on\(tol 0.015\) then drive_odom) Tj ET
+0.972 0.975 0.980 rg 46.0 329.4 700.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 333.2 Td (Safety) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 333.2 Td (Forward LiDAR guard aborts an approach that would collide) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 333.2 Td (front_min < front_guard \(0.35 m\)) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 733.5 22.0 Td (p. 6) Tj ET
+endstream
+endobj
+16 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 17 0 R >>
+endobj
+17 0 obj
+<< /Length 4768 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (5.  Simulation Workflow \(2 of 2\) - Manipulation and Placement) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (The bimanual sequence, from descent to a released object standing on the shelf) Tj ET
+0.900 0.930 0.970 rg 46.0 504.6 700.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 50.0 510.4 Td (Stage) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 141.0 510.4 Td (What the robot does) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 484.0 510.4 Td (Code path) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 494.0 Td (Staging) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 494.0 Td (Arms move to a raised pose so interpolation cannot sweep through the base deck) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 494.0 Td (choreography.STAGE_LEFT / STAGE_RIGHT) Tj ET
+0.972 0.975 0.980 rg 46.0 474.9 700.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 478.7 Td (Staggered deploy) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 478.7 Td (Left hand reaches its hover station first, then the right, so the arms never cross) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 478.7 Td (ik.solve per side, published separately) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 463.3 Td (IK GRASP) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 463.3 Td (Both grippers descend vertically onto the lying object and close to a light-touch fit) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 463.3 Td (grasp_waypoints -> pair_trajs -> ik.solve -> JointTrajectory) Tj ET
+0.972 0.975 0.980 rg 46.0 432.9 700.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 448.0 Td (Constraint) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 448.0 Td (A rigid joint binds the object to the palm; success is confirmed on the plugin state topic) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 436.6 Td (before proceeding) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 448.0 Td (set_grasp\(name, True\) with retries) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 421.3 Td (Finger relief) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 421.3 Td (Fingers back off 12 mm: the constraint carries the load, so finger contact must not fight) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 409.9 Td (it) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 421.3 Td (grippers\(close + 0.012\)) Tj ET
+0.972 0.975 0.980 rg 46.0 379.5 700.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 394.6 Td (REORIENTATION) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 394.6 Td (Phase A lifts and pre-rotates; phase B rotates to 90 deg about the object centre at a) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 383.2 Td (fixed hover point) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 394.6 Td (flip_waypoints: 4 lift + 8 rotation waypoints) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 367.9 Td (Transit) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 367.9 Td (Loaded drive to the shelf in a speed- and turn-rate-limited mode) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 367.9 Td (goto\(shelf_approach, slow=True\)) Tj ET
+0.972 0.975 0.980 rg 46.0 337.4 700.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 352.5 Td (Docking) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 352.5 Td (The shelf back-board is found in the LiDAR scan and the robot servos to a measured) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 341.2 Td (0.594 m stand-off) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 352.5 Td (dock_to_shelf -> _dock_servo -> _board_cluster) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 325.8 Td (PLACEMENT) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 325.8 Td (Object lowered to its own shelf height at its own lateral slot, then released with) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 314.5 Td (confirmation) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 325.8 Td (place_waypoints\(y_off\) then set_grasp\(name, False\)) Tj ET
+0.972 0.975 0.980 rg 46.0 295.4 700.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 299.1 Td (Withdraw) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 299.1 Td (Vertical clearance, reverse 0.6 m, arms tucked, next object) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 299.1 Td (clear_waypoints, drive_odom\(-0.6\), tuck\(\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 283.8 Td (Fault isolation) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 141.0 283.8 Td (Any failure releases the object, recovers the pose and continues with the next object) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 484.0 283.8 Td (per-object try / except in run\(\)) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 733.5 22.0 Td (p. 7) Tj ET
+endstream
+endobj
+18 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 19 0 R >>
+endobj
+19 0 obj
+<< /Length 3207 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (6.  Perception Design) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (Why the camera - not the LiDAR - finds the objects, and how range is obtained from a single RGB image) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 505.5 Td (Sensor division of labour) Tj ET
+BT /F1 10.2 Tf 0.130 0.130 0.130 rg 46.0 488.3 Td (A horizontal 2D scan plane cannot intersect a 5-10 cm object lying on the floor from any practical mast height. The LiDAR is therefore used for room) Tj ET
+BT /F1 10.2 Tf 0.130 0.130 0.130 rg 46.0 474.2 Td (structure, the forward safety guard and shelf docking, while object detection and ranging are done monocularly.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 448.8 Td (Pipeline, executed per camera frame at 15 Hz) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 432.0 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 432.0 Td (Convert to HSV and threshold one colour band per object class \(orange bottle, blue bowl, green box\); take the largest contour above a minimum pixel area.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 415.7 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 415.7 Td (Range by ground-plane back-projection: the depression angle of the blob's bottom pixel row, combined with the known camera height of 0.42 m and 15 deg) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 402.4 Td (tilt, yields the horizontal distance to the floor contact point.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 386.1 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 386.1 Td (Bearing from the horizontal pixel offset and the focal length \(intrinsics taken from /camera_info when available\).) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 369.7 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 369.7 Td (Apparent physical height from the blob height and that range - a lying bottle measures ~6 cm, an upright one ~20 cm, which is the lying-vs-upright test.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 353.4 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 353.4 Td (Results are published as one JSON message on /detections, so the mission consumes a single self-describing topic.) Tj ET
+0.980 0.950 0.860 rg 46.0 280.2 700.0 66.6 re f
+0.830 0.600 0.120 rg 46.0 280.2 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 58.0 329.9 Td (Practical lesson recorded during development) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 58.0 316.4 Td (Colour segmentation is only as good as the scene palette. The wooden shelf shared a hue family with the orange bottle, and the original blue arm links fell inside) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 58.0 303.2 Td (the bowl mask - both produced confident false detections. The shelf and the arms were desaturated and saturation floors were raised, which removed the) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 58.0 290.1 Td (ambiguity by construction rather than by tuning thresholds.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 733.5 22.0 Td (p. 8) Tj ET
+endstream
+endobj
+20 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 21 0 R >>
+endobj
+21 0 obj
+<< /Length 3175 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (7.  Kinematics, Control and the Grasp Constraint) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (Analytic inverse kinematics, synchronised dual-arm trajectories, and the modelling choice for the grasp) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 505.5 Td (Analytic 4-DOF inverse kinematics \(ik.py\)) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 488.7 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 488.7 Td (Yaw about the vertical axis through the shoulder decouples exactly, reducing the problem to a planar three-pitch chain; the elbow follows from the cosine) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 475.4 Td (rule and the wrist absorbs the remaining orientation error.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 459.0 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 459.0 Td (Both elbow-up and elbow-down solutions are generated; the elbow-up branch is preferred and any solution violating a joint limit is rejected, raising a typed) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 445.7 Td (error the mission can handle.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 429.4 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 429.4 Td (Forward kinematics is provided as well, which lets the test suite assert round-trip consistency to 1e-9 m over the entire workspace.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 406.4 Td (Trajectory generation and execution) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 389.6 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 389.6 Td (Cartesian waypoint pairs are solved per arm and emitted as JointTrajectory messages with matched timestamps, so the two arms stay synchronised) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 376.2 Td (through the flip.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 359.9 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 359.9 Td (The joint trajectory controllers interpolate with splines; the position-tracking gain of the simulated hardware interface was raised from the default 0.1 to 15.0) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 346.6 Td (after the default was found to produce roughly a ten-second joint lag.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 323.5 Td (The grasp constraint - an explicit modelling decision) Tj ET
+BT /F1 10.2 Tf 0.130 0.130 0.130 rg 46.0 306.3 Td (As stated in the design blueprint, the two-arm rigid grasp is realised as a fixed joint between palm and object rather than by friction contact, to avoid) Tj ET
+BT /F1 10.2 Tf 0.130 0.130 0.130 rg 46.0 292.3 Td (contact-friction instability during co-manipulation. The joint is created and destroyed at run time and its state is confirmed on a feedback topic before the) Tj ET
+BT /F1 10.2 Tf 0.130 0.130 0.130 rg 46.0 278.2 Td (mission proceeds. This is a deliberate simplification and is the main sim-to-real gap in the current model.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 733.5 22.0 Td (p. 9) Tj ET
+endstream
+endobj
+22 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 23 0 R >>
+endobj
+23 0 obj
+<< /Length 3254 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (8.  Closed-Loop Shelf Docking) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (Why odometry alone is not trusted for the placement pose, and how the shelf is located instead) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 505.5 Td (The problem) Tj ET
+BT /F1 10.2 Tf 0.130 0.130 0.130 rg 46.0 488.3 Td (Arm reaction torques transmitted through a rigidly held payload slip the wheels during the flip and the loaded turn. Because the choreography is identical) Tj ET
+BT /F1 10.2 Tf 0.130 0.130 0.130 rg 46.0 474.2 Td (every cycle, the resulting odometry error is repeatable rather than random - which means a hard-coded odometric shelf pose fails the same way every) Tj ET
+BT /F1 10.2 Tf 0.130 0.130 0.130 rg 46.0 460.1 Td (time.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 434.8 Td (The mechanism now implemented) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 418.0 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 418.0 Td (The shelf carries a 0.40 m wide, 0.60 m tall back-board specifically so that it intersects the 0.46 m scan plane and is detectable.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 401.6 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 401.6 Td (Scan returns are clustered; a candidate must match the board's physical width \(0.15-0.70 m as computed from its angular span and range\) and must stand) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 388.3 Td (out in depth from its surroundings, which rejects wall fragments.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 372.0 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 372.0 Td (The search sweep is bounded to +/-40 deg about the arrival heading, so a target behind the robot can never be acquired.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 355.7 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 355.7 Td (The robot then servos in range and bearing to a measured 0.594 m stand-off, i.e. the placement pose is defined by the sensed shelf, not by dead reckoning.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 339.3 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 339.3 Td (A successful dock is cross-checked against odometry and rejected as a phantom lock if the two disagree by more than 0.6 m; failures withdraw 0.35 m,) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 326.0 Td (re-approach and retry before any placement is attempted.) Tj ET
+0.910 0.960 0.910 rg 46.0 266.0 700.0 53.5 re f
+0.200 0.550 0.280 rg 46.0 266.0 3.5 53.5 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 58.0 302.5 Td (Measured outcome) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 58.0 289.0 Td (In the most recent run this mechanism docked the cup-bowl at a board range of 0.586 m and a bearing of 0.035 rad against a 0.594 m target - and refused to place) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 58.0 275.8 Td (blindly when the board could not be seen for the first object, falling back to a bounded odometric pose instead of an arbitrary one.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 729.3 22.0 Td (p. 10) Tj ET
+endstream
+endobj
+24 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 25 0 R >>
+endobj
+25 0 obj
+<< /Length 3889 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (9.  Verification Methodology) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (What is proven offline, what is only observable in simulation, and what that separation has bought) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 505.5 Td (Offline test suite - runs without ROS or Gazebo) Tj ET
+0.900 0.930 0.970 rg 46.0 481.1 700.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 50.0 486.9 Td (Suite) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 218.0 486.9 Td (What it asserts) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 470.5 Td (FK/IK round trip) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 218.0 470.5 Td (Every reachable pose on a workspace grid solves and re-projects to itself within 1e-9 m for both arms) Tj ET
+0.972 0.975 0.980 rg 46.0 451.4 700.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 455.2 Td (Unreachable rejection) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 218.0 455.2 Td (Targets outside the workspace raise a typed error rather than returning a silent bad solution) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 439.8 Td (Pose safety) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 218.0 439.8 Td (Tuck and staging poses are inside joint limits and keep the hands above the deck and behind the reach limit) Tj ET
+0.972 0.975 0.980 rg 46.0 409.4 700.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 424.5 Td (Choreography reachability) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 218.0 424.5 Td (Every grasp, lift, flip, place and clearance waypoint for all three objects is reachable by both arms within limits - the full mission is) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 218.0 413.1 Td (validated before it is run) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 383.9 Td (Static verification) Tj ET
+BT /F1 10.2 Tf 0.130 0.130 0.130 rg 46.0 366.7 Td (21 XML documents \(xacro, SDF, manifests\) parsed, 9 Python modules compiled, and a cross-package consistency sweep that checks joint names,) Tj ET
+BT /F1 10.2 Tf 0.130 0.130 0.130 rg 46.0 352.6 Td (controller names, topic names and model names agree across the description, simulation and behaviour packages.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 327.2 Td (Defects caught before ever reaching the simulator) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 310.4 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 310.4 Td (The elbow pitch limit of +/-110 deg made low grasps unreachable - widened to +/-115 deg.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 294.1 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 294.1 Td (A single-arc mid-air flip drove the lower wrist into an unreachable region - redesigned as a two-phase lift-then-rotate.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 277.8 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 277.8 Td (A proposed staging pose overreached to 0.384 m, and a first choice of lateral placement offsets \(+/-0.13 m\) exceeded the cross-reaching arm's envelope -) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 264.5 Td (both corrected to verified values.) Tj ET
+0.930 0.950 0.990 rg 46.0 204.4 700.0 53.5 re f
+0.200 0.400 0.700 rg 46.0 204.4 3.5 53.5 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 58.0 240.9 Td (Why this matters for the report) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 58.0 227.4 Td (The choreography test is the strongest artefact in the project: it converts "the arms might not reach" from a runtime surprise into a build-time failure, and it caught) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 58.0 214.3 Td (three real geometric defects that would otherwise have appeared as unexplained simulator behaviour.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 729.3 22.0 Td (p. 11) Tj ET
+endstream
+endobj
+26 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 27 0 R >>
+endobj
+27 0 obj
+<< /Length 2893 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (10.  Current Status - What Works) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (Behaviour observed in the most recent end-to-end runs) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 512.2 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 512.2 Td (Deterministic bring-up: all four controllers activate in a fixed order and the mission refuses to start until all 12 joints report state. An earlier race in which the) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 498.9 Td (right arm was still inactive during a grasp is eliminated.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 482.5 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 482.5 Td (Survey detection: all three objects are reliably found during a single 360 deg survey rotation and logged before any motion toward them.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 466.2 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 466.2 Td (Approach: repeatable to within a few centimetres - the blind odometry creep after the camera loses sight of the object measured 0.29-0.34 m across objects) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 452.9 Td (and runs, as expected for the stand-off geometry.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 436.6 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 436.6 Td (Bimanual grasp, rigid co-manipulation and the two-phase mid-air flip to upright complete for the bottle, the cup-bowl and the box.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 420.2 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 420.2 Td (Shelf docking closes the loop on the sensed board \(0.586 m measured against a 0.594 m target for the cup-bowl\).) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 403.9 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 403.9 Td (Placement is now distributed across the shelf: each object has its own lateral slot, so a newly placed object cannot knock over one placed earlier.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 387.6 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 387.6 Td (Fault isolation: a failure on one object releases its constraint, restores a safe pose, backs away and continues with the next object; the mission always) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 374.2 Td (terminates in a reported state rather than hanging.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 357.9 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 357.9 Td (Four worlds are provided: a combined world with three fallen objects handled successively, plus one world per object selectable from the same launch file.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 729.3 22.0 Td (p. 12) Tj ET
+endstream
+endobj
+28 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 29 0 R >>
+endobj
+29 0 obj
+<< /Length 4485 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (11.  Open Issues and Errors \(1 of 2\)) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (Observed failures, diagnosed cause, and current state of each) Tj ET
+0.900 0.930 0.970 rg 46.0 504.6 700.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 50.0 510.4 Td (ID) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 78.0 510.4 Td (Observed behaviour) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 267.0 510.4 Td (Diagnosed cause) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 533.0 510.4 Td (State) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 494.0 Td (E1) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 494.0 Td (For the first object the shelf board is not found;) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 482.7 Td (docking reports "notfound" twice and the object) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 471.3 Td (is placed at the fallback odometric pose instead) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 460.0 Td (of on the shelf.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 494.0 Td (Most probable cause is occlusion of the board by the carried object) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 482.7 Td (and extended arms during the loaded approach. The same code) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 471.3 Td (docked the cup-bowl successfully in the same run, so the detector) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 460.0 Td (itself is sound when the view is clear.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 494.0 Td (OPEN - hypothesis not yet confirmed; instrumented) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 482.7 Td (cluster logging is the next diagnostic step) Tj ET
+0.972 0.975 0.980 rg 46.0 429.5 700.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 444.6 Td (E2) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 444.6 Td (The held object visibly shifts and appears to) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 433.3 Td (pass through the gripper during the flip.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 444.6 Td (Finger contact fighting the rigid grasp constraint: both the fingers) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 433.3 Td (and the fixed joint were trying to control the same body.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 444.6 Td (FIX APPLIED - fingers relieved 12 mm after the) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 433.3 Td (constraint is confirmed; awaiting run verification) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 417.9 Td (E3) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 417.9 Td (An object stayed welded to the palm after) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 406.6 Td (placement, which then pulled a placed object) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 395.2 Td (off the shelf, hid the next object from the) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 383.9 Td (camera and snagged the arm on the shelf.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 417.9 Td (The release command was fire-and-forget; a single dropped) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 406.6 Td (message left the constraint silently active and every later stage) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 395.2 Td (inherited the fault.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 417.9 Td (FIXED - attach and release are now confirmed on the) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 406.6 Td (plugin state topic with retries) Tj ET
+0.972 0.975 0.980 rg 46.0 342.1 700.0 37.1 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 368.5 Td (E4) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 368.5 Td (Arm and carried object snagged the shelf) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 357.2 Td (back-board while turning at the dock, stalling) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 345.8 Td (the robot.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 368.5 Td (The swept radius of the arms plus payload is about 0.45 m, larger) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 357.2 Td (than the 0.5 m stand-off allows for a turn in place.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 368.5 Td (FIXED - a 0.35 m withdrawal is now mandatory before) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 357.2 Td (any re-approach turn) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 729.3 22.0 Td (p. 13) Tj ET
+endstream
+endobj
+30 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 31 0 R >>
+endobj
+31 0 obj
+<< /Length 3863 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (12.  Open Issues and Errors \(2 of 2\)) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (Remaining items, plus the single most instructive defect of the project) Tj ET
+0.900 0.930 0.970 rg 46.0 504.6 700.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 50.0 510.4 Td (ID) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 78.0 510.4 Td (Observed behaviour) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 267.0 510.4 Td (Diagnosed cause) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 533.0 510.4 Td (State) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 494.0 Td (E5) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 494.0 Td (An object recorded during the survey was later) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 482.7 Td (reported lost and skipped.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 494.0 Td (A single vantage point was used for reacquisition; a transient) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 482.7 Td (occlusion was enough to abandon the object.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 494.0 Td (FIXED - a second vantage point is tried before an) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 482.7 Td (object is abandoned) Tj ET
+0.972 0.975 0.980 rg 46.0 440.9 700.0 37.1 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 467.3 Td (E6) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 467.3 Td (Placement pose drifted by metres from the) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 456.0 Td (intended shelf pose.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 467.3 Td (Wheel slip under arm reaction torque during the flip and the loaded) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 456.0 Td (turn; an unclamped turn command was allowing up to 4.7 rad/s) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 444.6 Td (while carrying.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 467.3 Td (MITIGATED - turn rate clamped, a slow carry mode) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 456.0 Td (added, flip made gentler; LiDAR docking exists to) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 444.6 Td (bypass the residual drift) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 50.0 429.3 Td (E7) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 429.3 Td (Two objects were placed on the same spot and) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 78.0 417.9 Td (knocked each other over.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 429.3 Td (Placement height was per-object but the lateral position was not -) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 267.0 417.9 Td (every object was released at the same point on the slab.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 429.3 Td (FIXED - per-object lateral slots at -0.10, 0.00 and) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 533.0 417.9 Td (+0.10 m) Tj ET
+0.980 0.950 0.860 rg 46.0 338.5 700.0 66.6 re f
+0.830 0.600 0.120 rg 46.0 338.5 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 58.0 388.2 Td (The most instructive defect: a single default value) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 58.0 374.7 Td (gz_ros2_control defaults its position tracking gain to 0.1, which gave the joints roughly a ten-second lag. The arms never reached their commanded poses, sagged) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 58.0 361.5 Td (under gravity, dragged on the floor while driving - which corrupted odometry - and appeared in screenshots to have collapsed. Several apparently unrelated) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 58.0 348.4 Td (failures \(unreachable grasps, wrong placement locations, "collapsed" arms\) were all downstream of that one number, now set to 15.0.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 729.3 22.0 Td (p. 14) Tj ET
+endstream
+endobj
+32 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 33 0 R >>
+endobj
+33 0 obj
+<< /Length 3136 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (13.  Known Design Limitations) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (Stated explicitly - these are modelling choices and scope boundaries, not unexplained behaviour) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 46.0 512.6 Td (Grasp model) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 204.0 512.6 Td (A rigid fixed joint, as specified in the design blueprint, rather than force closure through friction. Hardware would require compliant) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 204.0 500.0 Td (pads, effort-based grip detection and a coordinated impedance controller.) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 46.0 485.4 Td (Motion planning) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 204.0 485.4 Td (Analytic inverse kinematics with hand-designed choreography; no MoveIt 2, therefore no general collision-aware planning.) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 204.0 472.8 Td (Base-deck and arm-crossing collisions are avoided by staging poses and staggered deployment rather than by a planner.) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 46.0 458.2 Td (Navigation) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 204.0 458.2 Td (Odometry plus LiDAR docking; no SLAM, no global map, no Nav2 obstacle avoidance. Adequate for an open floor, not for a) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 204.0 445.6 Td (cluttered room.) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 46.0 431.0 Td (Object pose assumption) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 204.0 431.0 Td (Objects are assumed to lie with their long axis pointing toward the approach direction, which the central scan hub enforces.) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 204.0 418.4 Td (Arbitrary in-plane orientation would need point-cloud pose estimation.) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 46.0 403.8 Td (Perception modality) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 204.0 403.8 Td (Single-colour segmentation per object class; sensitive to lighting and to palette collisions with the environment, as encountered) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 204.0 391.2 Td (during development.) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 46.0 376.6 Td (Orientation authority) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 204.0 376.6 Td (4-DOF per arm \(yaw plus three coplanar pitches\) provides planar orientation only - sufficient for the sideways-to-upright task, not) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 204.0 364.0 Td (for general 3D reorientation.) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 46.0 349.4 Td (Self-collision) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 204.0 349.4 Td (Disabled, as is standard practice for solver stability, so the model will not physically resist a self-intersecting command;) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 204.0 336.9 Td (correctness is enforced by the offline reachability and pose tests instead.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 729.3 22.0 Td (p. 15) Tj ET
+endstream
+endobj
+34 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 35 0 R >>
+endobj
+35 0 obj
+<< /Length 3468 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (14.  Path to an Industry-Grade System) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (Ordered by payoff per unit of effort) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 505.5 Td (Immediate - smoothness and robustness, small contained changes) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 488.7 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 488.7 Td (Emit velocities with each trajectory point so the controllers produce cubic rather than linear interpolation - the single largest visual improvement available.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 472.4 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 472.4 Td (Trapezoidal velocity profiles and blended arcs for the base, replacing the current turn-drive-turn motion.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 456.0 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 456.0 Td (Drive the arms through the FollowJointTrajectory action and use its result callback, eliminating the polling and settle heuristics entirely.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 439.7 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 439.7 Td (Low-pass filter the perception bearing and range feeding the servo loops.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 416.7 Td (Structural - what makes the architecture defensible) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 399.9 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 399.9 Td (MoveIt 2 for both arms: planning groups, real collision checking and time-parameterised trajectories, which makes an arm-through-base fault structurally) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 386.6 Td (impossible.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 370.2 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 370.2 Td (Nav2 with SLAM or AMCL for the base, replacing dead reckoning, the scan hub heuristic and the bespoke docking routine.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 353.9 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 353.9 Td (A behaviour tree in place of the hand-rolled state machine, making recovery paths explicit and introspectable.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 337.6 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 337.6 Td (Depth camera and point-cloud clustering with principal-axis estimation, which removes the object-orientation assumption altogether.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 314.5 Td (Sim-to-real prerequisites) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 297.7 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 297.7 Td (Force-closure grasping with effort-based verification before lift, replacing the rigid constraint.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 281.4 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 281.4 Td (Safety layer: software emergency stop, command watchdog, controller-enforced workspace limits, guard active in every motion state.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 265.1 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 265.1 Td (Continuous integration running the test suite and a headless mission test, plus a container image for reproducible runs.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 729.3 22.0 Td (p. 16) Tj ET
+endstream
+endobj
+36 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 792 612] /Contents 37 0 R >>
+endobj
+37 0 obj
+<< /Length 2999 >>
+stream
+0.070 0.130 0.260 rg 0.0 546.0 792.0 66.0 re f
+BT /F2 19.0 Tf 1.000 1.000 1.000 rg 46.0 576.0 Td (15.  Summary) Tj ET
+BT /F1 9.5 Tf 0.720 0.800 0.900 rg 46.0 558.5 Td (Where the project stands) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 505.5 Td (Delivered) Tj ET
+BT /F1 10.5 Tf 0.130 0.130 0.130 rg 46.0 488.0 Td (A complete, buildable ROS 2 Jazzy and Gazebo Harmonic simulation of a Kobuki-based dual-arm mobile manipulator, built to the dimensions of the) Tj ET
+BT /F1 10.5 Tf 0.130 0.130 0.130 rg 46.0 473.5 Td (design blueprint, that autonomously surveys a room, detects fallen objects by colour with monocular ranging, approaches them, grasps them with two) Tj ET
+BT /F1 10.5 Tf 0.130 0.130 0.130 rg 46.0 459.0 Td (cooperating 4-DOF arms, reorients them upright in mid-air, docks to a shelf using LiDAR and places each object in its own slot - repeating for every) Tj ET
+BT /F1 10.5 Tf 0.130 0.130 0.130 rg 46.0 444.5 Td (object detected and recovering per object from failures.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 419.0 Td (Engineering position) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 402.2 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 402.2 Td (Geometry, kinematics and the entire motion choreography are validated offline before any simulation runs, and that suite has already caught three) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 388.9 Td (geometric defects.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 372.6 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 372.6 Td (The failure modes that remain are contained: an unlocatable shelf now yields a bounded fallback placement rather than an arbitrary one, and a failure on) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 359.3 Td (one object cannot end the mission.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 342.9 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 342.9 Td (One open issue is carried honestly: the first object's shelf docking failure \(E1\), with a stated hypothesis and a defined next diagnostic step.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 46.0 319.9 Td (Immediate next steps) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 303.1 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 303.1 Td (Instrument the docking cluster rejection reasons and confirm or refute the occlusion hypothesis for E1.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 286.8 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 286.8 Td (Verify in simulation the applied fixes for the grasp-constraint and finger-interference issues.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 60.0 270.4 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 70.0 270.4 Td (Then proceed to the trajectory-smoothness work, which is small, contained and highly visible in a demonstration.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 46.0 22.0 Td (Dual-Arm Collaborative Manipulation on a Kobuki Base  |  ROS 2 Jazzy + Gazebo Harmonic  |  Preliminary review) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 729.3 22.0 Td (p. 17) Tj ET
+endstream
+endobj
+38 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+39 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+40 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+xref
+0 41
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000226 00000 n 
+0000000292 00000 n 
+0000000396 00000 n 
+0000002425 00000 n 
+0000002529 00000 n 
+0000007197 00000 n 
+0000007301 00000 n 
+0000011204 00000 n 
+0000011310 00000 n 
+0000015192 00000 n 
+0000015298 00000 n 
+0000020064 00000 n 
+0000020170 00000 n 
+0000024360 00000 n 
+0000024466 00000 n 
+0000029286 00000 n 
+0000029392 00000 n 
+0000032651 00000 n 
+0000032757 00000 n 
+0000035984 00000 n 
+0000036090 00000 n 
+0000039396 00000 n 
+0000039502 00000 n 
+0000043443 00000 n 
+0000043549 00000 n 
+0000046494 00000 n 
+0000046600 00000 n 
+0000051137 00000 n 
+0000051243 00000 n 
+0000055158 00000 n 
+0000055264 00000 n 
+0000058452 00000 n 
+0000058558 00000 n 
+0000062078 00000 n 
+0000062184 00000 n 
+0000065235 00000 n 
+0000065333 00000 n 
+0000065436 00000 n 
+trailer
+<< /Size 41 /Root 1 0 R >>
+startxref
+65532
+%%EOF

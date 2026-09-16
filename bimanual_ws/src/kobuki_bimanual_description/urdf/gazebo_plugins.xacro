@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="bimanual_gazebo">
+
+    <!-- differential drive for the Kobuki base -->
+    <gazebo>
+      <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+        <left_joint>left_wheel_joint</left_joint>
+        <right_joint>right_wheel_joint</right_joint>
+        <wheel_separation>0.230</wheel_separation>
+        <wheel_radius>0.038</wheel_radius>
+        <topic>/cmd_vel</topic>
+        <odom_topic>/odom</odom_topic>
+        <tf_topic>/tf_gz</tf_topic>
+        <frame_id>odom</frame_id>
+        <child_frame_id>base_footprint</child_frame_id>
+        <odom_publish_frequency>30</odom_publish_frequency>
+        <max_linear_acceleration>1.0</max_linear_acceleration>
+        <max_angular_acceleration>2.0</max_angular_acceleration>
+      </plugin>
+    </gazebo>
+
+    <!-- grasp = detachable fixed joint between LEFT palm and each object.
+         Gazebo Sim 8 starts detached; the mission attaches on grasp and
+         detaches on place, requiring state feedback for both transitions. -->
+    <xacro:macro name="grasp_joint" params="obj">
+      <gazebo>
+        <plugin filename="gz-sim-detachable-joint-system" name="gz::sim::systems::DetachableJoint">
+          <parent_link>left_palm_link</parent_link>
+          <child_model>${obj}</child_model>
+          <child_link>link</child_link>
+          <attach_topic>/grasp/${obj}/attach</attach_topic>
+          <detach_topic>/grasp/${obj}/detach</detach_topic>
+          <output_topic>/grasp/${obj}/state</output_topic>
+        </plugin>
+      </gazebo>
+    </xacro:macro>
+    <xacro:grasp_joint obj="bottle"/>
+    <xacro:grasp_joint obj="bowl"/>
+    <xacro:grasp_joint obj="cracker_box"/>
+
+    <!-- ros2_control inside Gazebo -->
+    <gazebo>
+      <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">
+        <parameters>$(find kobuki_bimanual_description)/config/controllers.yaml</parameters>
+        <!-- Joint tracking gain: commanded joint velocity = gain * position
+             error (proportional only, no damping term). Tuned empirically on
+             the target machine:
+               1.0 -> ~1 s time constant, too slow: the flip did not converge
+               2.0 -> converges cleanly, no oscillation           <== chosen
+               4.0+ -> commanded velocity exceeds what the joint can deliver
+                       smoothly, error changes sign and the arm rings (jitter)
+             Paired with the slower flip timing (2.5 s per waypoint) this has
+             margin at both ends. Kept in sync with ros2_control.xacro. -->
+        <position_proportional_gain>2.0</position_proportional_gain>
+      </plugin>
+    </gazebo>
+
+  </xacro:macro>
+</robot>

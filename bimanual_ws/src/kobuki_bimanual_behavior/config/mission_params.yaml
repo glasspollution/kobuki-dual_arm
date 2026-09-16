@@ -1,0 +1,79 @@
+# Parameters for the bimanual pick-reorient-place demo.
+#
+# Geometry values must stay consistent with:
+#   kobuki_bimanual_description/urdf/*.xacro       (robot model)
+#   kobuki_bimanual_behavior/.../ik.py             (arm geometry)
+#   kobuki_bimanual_gazebo/worlds/*.sdf            (object + shelf poses)
+
+perception_node:
+  ros__parameters:
+    cam_height: 0.42       # camera z (m, above ground)
+    cam_pitch: 0.2618      # 15 deg downward tilt
+    cam_x: -0.075          # camera x offset from base center
+    min_area: 120          # px, smallest blob accepted
+    objects: [bottle, bowl, cracker_box]
+    bottle:
+      hsv_lo: [5, 170, 80]        # orange; S floor 170 rejects wood tones
+      hsv_hi: [22, 255, 255]
+    bowl:
+      hsv_lo: [100, 130, 60]      # blue; floor 130 clears lighting washout
+      hsv_hi: [135, 255, 255]     # while still rejecting the S~41 arms
+    cracker_box:
+      hsv_lo: [40, 100, 60]       # green
+      hsv_hi: [80, 255, 255]
+
+mission_node:
+  ros__parameters:
+    autostart: true
+    objects: [bottle, bowl, cracker_box]   # priority order
+
+    grasp_forward: 0.30        # object center ahead of base center at grasp
+    approach_stop_range: 0.55  # switch to odometry creep below this range
+    shelf_approach: [-0.83, 0.0, 3.14159]  # odom-frame park pose at shelf
+    # LiDAR-measured range to the shelf back-board at the correct park spot:
+    # |board_face(-1.325) - park_x(-0.83)| + lidar rear offset (0.099)
+    shelf_stop_range: 0.594
+    backup_dist: 0.6
+    open_pos: 0.062            # finger open position (m per finger)
+    v_lin: 0.22
+    w_rot: 0.5
+    scan_w: 0.4
+    front_guard: 0.35          # LiDAR forward safety stop (m)
+    # Clearance kept between the BUMPER and obstacles during goto(). The
+    # LiDAR sits 0.2775 m behind the bumper, so goto stops when the raw
+    # forward range drops below bumper_clear + 0.2775 (= 0.43 m here).
+    bumper_clear: 0.15
+    # central point the robot returns to before hunting each object, so
+    # every approach comes from the direction the object axes point at
+    scan_hub: [0.0, 0.0]
+
+    bottle:
+      half_len: 0.10           # half of the lying long dimension
+      lying_z: 0.031           # center height when lying
+      s: 0.050                 # grasp station offset along the axis
+      close: 0.037             # finger pos closed: half-width + pad + 1 mm
+      grasp_z_off: 0.010       # grip this far above the lying center-line
+      z_place: 0.225           # object center height at shelf release
+      place_y_off: 0.0         # lateral slab position (bottle = center)
+      upright_h: 0.20          # real height when upright (classifier)
+      check_upright: true
+    bowl:
+      half_len: 0.05           # axial half-length of the 10 cm cup
+      lying_z: 0.041           # center height when lying (radius)
+      s: 0.035
+      close: 0.047
+      grasp_z_off: 0.010
+      z_place: 0.175           # 0.12 slab + 0.05 half height + 5 mm
+      place_y_off: 0.10        # left side of the slab
+      upright_h: 0.10
+      check_upright: false     # aspect/height cannot separate bowl poses
+    cracker_box:
+      half_len: 0.09
+      lying_z: 0.031
+      s: 0.050
+      close: 0.047
+      grasp_z_off: 0.010
+      z_place: 0.215
+      place_y_off: -0.10       # right side of the slab
+      upright_h: 0.18
+      check_upright: true

@@ -1,0 +1,75 @@
+# Rotation-only diagnostic mission.
+#
+# The compact world keeps all object centres 0.30 m from the base.  The
+# camera is pitched 45 degrees down so that this arm-reachable floor annulus
+# is visible.  The base may yaw, but stationary mission code never commands
+# linear velocity.
+
+perception_node:
+  ros__parameters:
+    cam_height: 0.42
+    cam_pitch: 0.785398       # 45 deg down; must match stationary.launch.py
+    cam_x: -0.075
+    min_area: 120
+    objects: [bottle, bowl, cracker_box]
+    bottle:
+      hsv_lo: [5, 170, 80]
+      hsv_hi: [22, 255, 255]
+    bowl:
+      hsv_lo: [100, 130, 60]
+      hsv_hi: [135, 255, 255]
+    cracker_box:
+      hsv_lo: [40, 100, 60]
+      hsv_hi: [80, 255, 255]
+
+mission_node:
+  ros__parameters:
+    autostart: true
+    mission_mode: stationary
+    objects: [bottle, bowl, cracker_box]
+
+    # Every pickup is at this radius after vision centres the target.
+    grasp_forward: 0.30
+    stationary_scan_angle: 6.583185
+    stationary_lift_z: 0.270       # hand grasp-point height, orientation fixed
+    stationary_range_tolerance: 0.08
+    stationary_vertical_steps: 7
+    interface_timeout: 45.0
+
+    open_pos: 0.062
+    scan_w: 0.30
+
+    # Objects remain lying down.  Each place_z is the hand grasp-point height
+    # that puts the object's lower surface on the 0.17 m shelf top.
+    # Shelf yaw slots are filled clockwise while every loaded turn is CCW;
+    # this prevents the payload from sweeping through an occupied slot.
+    bottle:
+      half_len: 0.10
+      lying_z: 0.031
+      s: 0.040
+      close: 0.037
+      grasp_z_off: 0.010
+      stationary_place_z: 0.211
+      stationary_place_yaw: -2.801756  # shelf centre y = -0.100 m
+      stationary_clear_yaw: -1.754558
+      stationary_clear_direction: 1.0
+    bowl:
+      half_len: 0.05
+      lying_z: 0.041
+      s: 0.035
+      close: 0.047
+      grasp_z_off: 0.010
+      stationary_place_z: 0.221
+      stationary_place_yaw: 3.14159
+      stationary_clear_yaw: 2.0944
+      stationary_clear_direction: -1.0
+    cracker_box:
+      half_len: 0.09
+      lying_z: 0.031
+      s: 0.040
+      close: 0.047
+      grasp_z_off: 0.010
+      stationary_place_z: 0.211
+      stationary_place_yaw: 2.773325   # shelf centre y = +0.108 m
+      stationary_clear_yaw: 1.726127
+      stationary_clear_direction: -1.0

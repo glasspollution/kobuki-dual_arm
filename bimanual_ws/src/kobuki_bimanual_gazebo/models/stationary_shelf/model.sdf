@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<sdf version="1.9">
+  <model name="stationary_shelf">
+    <static>true</static>
+    <link name="link">
+      <!-- The 0.17 m top clears both the 0.125 m base and 0.14 m deck
+           during in-place turns. -->
+      <collision name="slab_col">
+        <pose>0 0 0.16 0 0 0</pose>
+        <geometry><box><size>0.25 0.42 0.02</size></box></geometry>
+        <surface>
+          <friction><ode><mu>1.0</mu><mu2>1.0</mu2></ode></friction>
+        </surface>
+      </collision>
+      <visual name="slab_vis">
+        <pose>0 0 0.16 0 0 0</pose>
+        <geometry><box><size>0.25 0.42 0.02</size></box></geometry>
+        <material>
+          <ambient>0.72 0.72 0.70 1</ambient>
+          <diffuse>0.72 0.72 0.70 1</diffuse>
+        </material>
+      </visual>
+
+      <!-- Four narrow legs stay outside the base's 0.1775 m radius. -->
+      <collision name="leg1_col"><pose>0.105 0.19 0.075 0 0 0</pose><geometry><box><size>0.03 0.03 0.15</size></box></geometry></collision>
+      <visual name="leg1_vis"><pose>0.105 0.19 0.075 0 0 0</pose><geometry><box><size>0.03 0.03 0.15</size></box></geometry><material><ambient>0.45 0.45 0.44 1</ambient><diffuse>0.45 0.45 0.44 1</diffuse></material></visual>
+      <collision name="leg2_col"><pose>0.105 -0.19 0.075 0 0 0</pose><geometry><box><size>0.03 0.03 0.15</size></box></geometry></collision>
+      <visual name="leg2_vis"><pose>0.105 -0.19 0.075 0 0 0</pose><geometry><box><size>0.03 0.03 0.15</size></box></geometry><material><ambient>0.45 0.45 0.44 1</ambient><diffuse>0.45 0.45 0.44 1</diffuse></material></visual>
+      <collision name="leg3_col"><pose>-0.105 0.19 0.075 0 0 0</pose><geometry><box><size>0.03 0.03 0.15</size></box></geometry></collision>
+      <visual name="leg3_vis"><pose>-0.105 0.19 0.075 0 0 0</pose><geometry><box><size>0.03 0.03 0.15</size></box></geometry><material><ambient>0.45 0.45 0.44 1</ambient><diffuse>0.45 0.45 0.44 1</diffuse></material></visual>
+      <collision name="leg4_col"><pose>-0.105 -0.19 0.075 0 0 0</pose><geometry><box><size>0.03 0.03 0.15</size></box></geometry></collision>
+      <visual name="leg4_vis"><pose>-0.105 -0.19 0.075 0 0 0</pose><geometry><box><size>0.03 0.03 0.15</size></box></geometry><material><ambient>0.45 0.45 0.44 1</ambient><diffuse>0.45 0.45 0.44 1</diffuse></material></visual>
+
+      <!-- Short back lip: enough to read visually, below the tucked-arm
+           sweep and deliberately not used for LiDAR docking. -->
+      <collision name="back_col">
+        <pose>-0.135 0 0.21 0 0 0</pose>
+        <geometry><box><size>0.02 0.42 0.10</size></box></geometry>
+      </collision>
+      <visual name="back_vis">
+        <pose>-0.135 0 0.21 0 0 0</pose>
+        <geometry><box><size>0.02 0.42 0.10</size></box></geometry>
+        <material>
+          <ambient>0.58 0.58 0.56 1</ambient>
+          <diffuse>0.58 0.58 0.56 1</diffuse>
+        </material>
+      </visual>
+    </link>
+  </model>
+</sdf>

@@ -1,0 +1,1965 @@
+%PDF-1.4
+1 0 obj
+<< /Type /Catalog /Pages 2 0 R >>
+endobj
+2 0 obj
+<< /Type /Pages /Count 34 /Kids [4 0 R 6 0 R 8 0 R 10 0 R 12 0 R 14 0 R 16 0 R 18 0 R 20 0 R 22 0 R 24 0 R 26 0 R 28 0 R 30 0 R 32 0 R 34 0 R 36 0 R 38 0 R 40 0 R 42 0 R 44 0 R 46 0 R 48 0 R 50 0 R 52 0 R 54 0 R 56 0 R 58 0 R 60 0 R 62 0 R 64 0 R 66 0 R 68 0 R 70 0 R] >>
+endobj
+3 0 obj
+<< /Font << /F1 72 0 R /F2 73 0 R /F3 74 0 R >> >>
+endobj
+4 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 5 0 R >>
+endobj
+5 0 obj
+<< /Length 3511 >>
+stream
+0.070 0.130 0.260 rg 0.0 492.0 612.0 300.0 re f
+BT /F2 30.0 Tf 1.000 1.000 1.000 rg 54.0 692.0 Td (DEVELOPER) Tj ET
+BT /F2 30.0 Tf 1.000 1.000 1.000 rg 54.0 656.0 Td (HANDOVER GUIDE) Tj ET
+0.450 0.620 0.850 rg 54.0 632.5 110.0 3.5 re f
+BT /F1 13.0 Tf 0.720 0.800 0.900 rg 54.0 603.0 Td (Kobuki-Based Dual-Arm Mobile Manipulator) Tj ET
+BT /F1 11.0 Tf 0.600 0.700 0.840 rg 54.0 583.0 Td (ROS 2 Jazzy  |  Gazebo Harmonic  |  bimanual_ws) Tj ET
+BT /F1 11.0 Tf 0.600 0.700 0.840 rg 54.0 549.0 Td (Complete file-by-file reference and code-backed walkthrough) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 445.5 Td (Who this document is for) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 428.5 Td (You know ROS 2 and Gazebo basics but have never seen this project. This guide assumes nothing about the) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 414.7 Td (project itself. It describes every file, what each one contains, how they connect, every topic and parameter, and) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 400.9 Td (then walks through the entire simulation run step by step - each step tied back to the exact file and function that) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 387.1 Td (causes it. Read section 11 if you only read one thing: it is the run itself, narrated against the code.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 361.8 Td (How to read this) Tj ET
+BT /F2 9.6 Tf 0.100 0.200 0.350 rg 54.0 345.2 Td (Sections 1-3) Tj ET
+BT /F1 9.6 Tf 0.150 0.150 0.150 rg 162.0 345.2 Td (Orientation: what the robot does, how to build and run it, and the mental model.) Tj ET
+BT /F2 9.6 Tf 0.100 0.200 0.350 rg 54.0 330.3 Td (Section 4) Tj ET
+BT /F1 9.6 Tf 0.150 0.150 0.150 rg 162.0 330.3 Td (Repository map - every file with a one-line purpose.) Tj ET
+BT /F2 9.6 Tf 0.100 0.200 0.350 rg 54.0 315.5 Td (Sections 5-7) Tj ET
+BT /F1 9.6 Tf 0.150 0.150 0.150 rg 162.0 315.5 Td (File-by-file deep dive, one package at a time.) Tj ET
+BT /F2 9.6 Tf 0.100 0.200 0.350 rg 54.0 300.6 Td (Section 8) Tj ET
+BT /F1 9.6 Tf 0.150 0.150 0.150 rg 162.0 300.6 Td (How the files interact - the data flow.) Tj ET
+BT /F2 9.6 Tf 0.100 0.200 0.350 rg 54.0 285.7 Td (Sections 9-10) Tj ET
+BT /F1 9.6 Tf 0.150 0.150 0.150 rg 162.0 285.7 Td (Complete interface and geometry reference tables.) Tj ET
+BT /F2 9.6 Tf 0.100 0.200 0.350 rg 54.0 270.9 Td (Section 11) Tj ET
+BT /F1 9.6 Tf 0.150 0.150 0.150 rg 162.0 270.9 Td (The full runtime walkthrough, step by step, with code citations. The core of this document.) Tj ET
+BT /F2 9.6 Tf 0.100 0.200 0.350 rg 54.0 256.0 Td (Sections 12-15) Tj ET
+BT /F1 9.6 Tf 0.150 0.150 0.150 rg 162.0 256.0 Td (Tuning cookbook, tests, gotchas, glossary.) Tj ET
+0.930 0.950 0.990 rg 54.0 180.1 504.0 66.6 re f
+0.200 0.400 0.700 rg 54.0 180.1 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 229.8 Td (One-line summary of the system) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 216.3 Td (A two-armed robot on a round mobile base spins to survey a room, spots colour-coded objects lying on their side,) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 203.1 Td (drives up to one, grips it with both hands, rotates it upright in mid-air, drives to a shelf that it finds with its LiDAR,) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 189.9 Td (and sets the object down standing - then repeats for the next object.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 545.5 22.0 Td (p. 1) Tj ET
+endstream
+endobj
+6 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 7 0 R >>
+endobj
+7 0 obj
+<< /Length 6434 >>
+stream
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 721.0 Td (1.  What the System Does) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 715.0 m 558.0 715.0 l S
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 693.0 Td (The robot performs a full fetch-and-right cycle autonomously. Objects start lying on their side on the floor. The) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 679.2 Td (robot must find them, pick them up with two arms, turn them upright while holding them in the air, and place them) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 665.4 Td (standing on a shelf. The bimanual arrangement exists for exactly that mid-air rotation: each arm has 4 degrees of) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 651.6 Td (freedom and cannot rotate a grasped object about a horizontal axis on its own, but two arms holding opposite) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 637.8 Td (ends can rotate it together like a steering wheel.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 612.5 Td (The seven phases) Tj ET
+0.900 0.930 0.970 rg 54.0 588.1 504.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 58.0 593.9 Td (#) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 88.2 593.9 Td (Phase) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 199.1 593.9 Td (Meaning) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 577.5 Td (1) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 88.2 577.5 Td (SEARCH) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 577.5 Td (Spin in place and record every object seen) Tj ET
+0.972 0.975 0.980 rg 54.0 558.4 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 562.2 Td (2) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 88.2 562.2 Td (APPROACH) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 562.2 Td (Drive toward the chosen object) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 546.8 Td (3) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 88.2 546.8 Td (ALIGN) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 546.8 Td (Centre the object before the final blind approach) Tj ET
+0.972 0.975 0.980 rg 54.0 527.7 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 531.5 Td (4) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 88.2 531.5 Td (IK GRASP) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 531.5 Td (Both grippers descend and close on it) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 516.1 Td (5) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 88.2 516.1 Td (CO-MANIPULATION) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 516.1 Td (Object is rigidly bound to the gripper; both arms move as a unit) Tj ET
+0.972 0.975 0.980 rg 54.0 497.0 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 500.8 Td (6) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 88.2 500.8 Td (REORIENTATION) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 500.8 Td (Lift and rotate 90 degrees to upright) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 485.4 Td (7) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 88.2 485.4 Td (PLACEMENT) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 485.4 Td (Dock at the shelf, lower, release, retreat) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 456.2 Td (The three objects) Tj ET
+0.900 0.930 0.970 rg 54.0 431.8 504.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 58.0 437.6 Td (Object) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 143.7 437.6 Td (Geometry) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 305.0 437.6 Td (Mass) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 355.4 437.6 Td (Colour) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 420.9 437.6 Td (Shelf height at release) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 421.2 Td (bottle) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 143.7 421.2 Td (60 mm dia. x 200 mm cylinder) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 305.0 421.2 Td (150 g) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 355.4 421.2 Td (orange) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 420.9 421.2 Td (0.235 m \(object centre\)) Tj ET
+0.972 0.975 0.980 rg 54.0 402.1 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 405.9 Td (bowl) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 143.7 405.9 Td (80 mm dia. x 100 mm cup) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 305.0 405.9 Td (200 g) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 355.4 405.9 Td (blue) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 420.9 405.9 Td (0.185 m) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 390.5 Td (cracker_box) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 143.7 390.5 Td (60 x 80 x 180 mm box) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 305.0 390.5 Td (250 g) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 355.4 390.5 Td (green) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 420.9 390.5 Td (0.225 m) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 367.8 Td (Colour matters: it is the only thing that distinguishes objects to the perception system. Everything else in the) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 354.0 Td (scene is deliberately desaturated so it cannot be mistaken for an object.) Tj ET
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 328.2 Td (2.  Build and Run) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 322.2 m 558.0 322.2 l S
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 293.7 Td (Requirements) Tj ET
+0.955 0.955 0.930 rg 54.0 209.7 504.0 76.9 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 272.5 Td (Pop!_OS / Ubuntu 24.04 \(Noble\) - required for ROS 2 Jazzy packages) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 261.7 Td () Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 250.8 Td (sudo apt install -y \\) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 240.0 Td (  ros-jazzy-desktop ros-jazzy-ros-gz ros-jazzy-gz-ros2-control \\) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 229.2 Td (  ros-jazzy-ros2-controllers ros-jazzy-xacro \\) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 218.4 Td (  python3-opencv python3-numpy python3-colcon-common-extensions) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 185.2 Td (Build) Tj ET
+0.955 0.955 0.930 rg 54.0 122.9 504.0 55.3 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 164.0 Td (cd ~/kuboki/PROJECT/DEV/bimanual_ws     # wherever the workspace is) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 153.2 Td (source /opt/ros/jazzy/setup.bash) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 142.4 Td (colcon build --symlink-install) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 131.6 Td (source install/setup.bash) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 98.4 Td (Run) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 545.5 22.0 Td (p. 2) Tj ET
+endstream
+endobj
+8 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 9 0 R >>
+endobj
+9 0 obj
+<< /Length 2461 >>
+stream
+0.955 0.955 0.930 rg 54.0 617.8 504.0 120.2 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 723.8 Td (# main world: three fallen objects handled one after another) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 713.0 Td (ros2 launch kobuki_bimanual_gazebo sim.launch.py) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 702.2 Td () Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 691.3 Td (# single-object worlds) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 680.5 Td (ros2 launch kobuki_bimanual_gazebo sim.launch.py world:=bottle) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 669.7 Td (ros2 launch kobuki_bimanual_gazebo sim.launch.py world:=bowl) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 658.9 Td (ros2 launch kobuki_bimanual_gazebo sim.launch.py world:=box) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 648.0 Td () Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 637.2 Td (# load the sim but do NOT start the mission \(drive it manually\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 626.4 Td (ros2 launch kobuki_bimanual_gazebo sim.launch.py autostart:=false) Tj ET
+0.940 0.960 0.990 rg 54.0 556.3 504.0 53.5 re f
+0.200 0.400 0.700 rg 54.0 556.3 3.5 53.5 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 592.8 Td (If the GUI misbehaves on your machine) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 579.3 Td (Prefix the launch with QT_QPA_PLATFORM=xcb \(this is what has been used during development\). On virtual) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 566.1 Td (machines without GPU passthrough, export LIBGL_ALWAYS_SOFTWARE=1 as well.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 530.8 Td (Useful inspection commands while it runs) Tj ET
+0.955 0.955 0.930 rg 54.0 457.7 504.0 66.1 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 509.6 Td (ros2 topic echo /detections            # what perception sees, JSON) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 498.8 Td (ros2 topic hz /camera /scan             # sensors alive?) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 487.9 Td (ros2 control list_controllers           # all four should be active) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 477.1 Td (ros2 topic echo /joint_states           # 12 joints) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 466.3 Td (gz topic -l                             # raw Gazebo topic list) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 545.5 22.0 Td (p. 3) Tj ET
+endstream
+endobj
+10 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 11 0 R >>
+endobj
+11 0 obj
+<< /Length 2891 >>
+stream
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 721.0 Td (3.  The Mental Model) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 715.0 m 558.0 715.0 l S
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 693.0 Td (There are three layers, and they are kept strictly separate. Understanding the split explains most design decisions) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 679.2 Td (in the code.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 653.9 Td (Layer 1 - Description \(what the robot IS\)) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 637.1 Td (A set of xacro files that declare the robot: link geometry, joints, sensors, the hardware interfaces ros2_control will) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 623.6 Td (drive, and the Gazebo plugins. Nothing here knows about the mission. Every dimension is a named constant,) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 610.1 Td (declared once.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 584.8 Td (Layer 2 - Simulation assets \(where the robot LIVES\)) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 568.0 Td (World files \(room, walls, shelf, objects at their starting poses\), object models, and one launch file that starts every) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 554.5 Td (process in a deterministic order. Nothing here knows about kinematics.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 529.3 Td (Layer 3 - Behaviour \(what the robot DOES\)) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 512.5 Td (Pure-Python kinematics and choreography with no ROS imports at all, plus two ROS nodes: one that turns camera) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 499.0 Td (frames into detections, and one state machine that runs the mission. Because the kinematics and choreography are) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 485.4 Td (ROS-free, the entire motion plan can be validated by a unit test on any machine without launching Gazebo.) Tj ET
+0.990 0.960 0.900 rg 54.0 410.1 504.0 66.6 re f
+0.850 0.620 0.150 rg 54.0 410.1 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 459.7 Td (The most important consequence of this split) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 446.2 Td (Geometry is declared in the xacro files and mirrored as constants in ik.py. A test asserts that every motion the) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 433.0 Td (mission can command is reachable within the declared joint limits. If you change a link length in the xacro, you must) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 419.9 Td (change it in ik.py too - and the test is what will catch you if you forget.) Tj ET
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 384.1 Td (4.  Repository Map) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 378.1 m 558.0 378.1 l S
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 545.5 22.0 Td (p. 4) Tj ET
+endstream
+endobj
+12 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 13 0 R >>
+endobj
+13 0 obj
+<< /Length 4890 >>
+stream
+0.955 0.955 0.930 rg 54.0 325.5 504.0 412.5 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 723.8 Td (bimanual_ws/) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 713.0 Td (  README.md                       quick reference: setup, run, tuning) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 702.2 Td (  src/) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 691.3 Td (    kobuki_bimanual_description/  WHAT THE ROBOT IS) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 680.5 Td (      urdf/robot.urdf.xacro       top level: all constants + assembly) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 669.7 Td (      urdf/base.xacro             base body, deck, wheels, casters) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 658.9 Td (      urdf/mast_sensors.xacro     twin mast rods, LiDAR, camera) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 648.0 Td (      urdf/arm.xacro              one 4-DOF arm + gripper \(used twice\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 637.2 Td (      urdf/ros2_control.xacro     12 joint interfaces + tracking gain) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 626.4 Td (      urdf/gazebo_plugins.xacro   diff drive, grasp joints, control) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 615.6 Td (      config/controllers.yaml     four controller definitions) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 604.7 Td (      CMakeLists.txt package.xml  build + manifest) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 593.9 Td () Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 583.1 Td (    kobuki_bimanual_gazebo/       WHERE THE ROBOT LIVES) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 572.3 Td (      worlds/main.sdf             room + shelf + all three objects) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 561.4 Td (      worlds/bottle.sdf           room + shelf + bottle only) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 550.6 Td (      worlds/bowl.sdf             room + shelf + bowl only) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 539.8 Td (      worlds/box.sdf              room + shelf + cracker box only) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 529.0 Td (      models/bottle/              model.sdf + model.config) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 518.1 Td (      models/bowl/                model.sdf + model.config) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 507.3 Td (      models/cracker_box/         model.sdf + model.config) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 496.5 Td (      models/shelf/               model.sdf + model.config \(static\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 485.7 Td (      launch/sim.launch.py        the single bring-up file) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 474.8 Td (      CMakeLists.txt package.xml  build + manifest) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 464.0 Td () Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 453.2 Td (    kobuki_bimanual_behavior/     WHAT THE ROBOT DOES) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 442.4 Td (      kobuki_bimanual_behavior/) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 431.6 Td (        ik.py                     analytic FK/IK, no ROS imports) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 420.7 Td (        choreography.py           waypoint generators, no ROS imports) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 409.9 Td (        arm_commander.py          waypoints -> JointTrajectory msgs) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 399.1 Td (        perception_node.py        camera -> /detections \(ROS node\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 388.3 Td (        mission_node.py           the mission state machine \(ROS node\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 377.4 Td (        __init__.py               empty package marker) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 366.6 Td (      config/mission_params.yaml  every tunable number) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 355.8 Td (      test/test_ik.py             offline validation suite) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 345.0 Td (      setup.py setup.cfg          entry points + install layout) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 334.1 Td (      package.xml resource/       manifest + ament marker) Tj ET
+0.940 0.960 0.990 rg 54.0 264.0 504.0 53.5 re f
+0.200 0.400 0.700 rg 54.0 264.0 3.5 53.5 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 300.5 Td (Two files you will edit most often) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 287.0 Td (config/mission_params.yaml for behaviour tuning \(distances, colour ranges, grasp offsets, speeds\), and) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 273.9 Td (mission_node.py for logic changes. Geometry changes mean editing robot.urdf.xacro AND ik.py together.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 545.5 22.0 Td (p. 5) Tj ET
+endstream
+endobj
+14 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 15 0 R >>
+endobj
+15 0 obj
+<< /Length 7444 >>
+stream
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 721.0 Td (5.  Package 1 - kobuki_bimanual_description) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 715.0 m 558.0 715.0 l S
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 693.0 Td (Build type ament_cmake. Installs the urdf/ and config/ directories into the share directory so the launch file and) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 679.2 Td (controller manager can find them. Contains no executable code.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 653.9 Td (5.1  urdf/robot.urdf.xacro - the top level) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 637.1 Td (This is the file the launch process feeds to xacro. It does three things: declares every geometric constant as an) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 623.6 Td (xacro property, includes the other five xacro files, and calls their macros to assemble the robot. Read this file first -) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 610.1 Td (every number in the robot is here.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 590.8 Td (Constants declared here \(all lengths in metres, angles in radians\)) Tj ET
+0.900 0.930 0.970 rg 54.0 568.5 504.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 58.0 574.2 Td (Property) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 199.1 574.2 Td (Value) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 284.8 574.2 Td (Meaning) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 557.9 Td (base_radius) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 557.9 Td (0.1775) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 284.8 557.9 Td (Kobuki radius \(354 mm diameter\)) Tj ET
+0.972 0.975 0.980 rg 54.0 538.8 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 542.5 Td (base_body_z0 / base_body_top) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 542.5 Td (0.020 / 0.125) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 284.8 542.5 Td (Bottom and top of the base shell above ground) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 527.2 Td (deck_top_z) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 527.2 Td (0.140) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 284.8 527.2 Td (Arm mounting deck: base height + 15 mm standoff) Tj ET
+0.972 0.975 0.980 rg 54.0 508.1 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 511.8 Td (wheel_radius / wheel_sep) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 511.8 Td (0.038 / 0.230) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 284.8 511.8 Td (Drive wheel geometry) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 496.5 Td (caster_radius) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 496.5 Td (0.019) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 284.8 496.5 Td (Front and rear support spheres) Tj ET
+0.972 0.975 0.980 rg 54.0 477.4 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 481.1 Td (arm_mount_x / arm_mount_y) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 481.1 Td (0.095 / 0.08875) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 284.8 481.1 Td (Arm mount offsets from base centre \(radius 0.130, separation 0.1775\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 465.8 Td (shoulder_z) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 465.8 Td (0.180) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 284.8 465.8 Td (Shoulder pitch axis height = deck + 40 mm riser) Tj ET
+0.972 0.975 0.980 rg 54.0 446.7 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 450.4 Td (L1 / L2) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 450.4 Td (0.160 / 0.160) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 284.8 450.4 Td (Upper arm and forearm lengths) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 435.1 Td (mast_x) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 435.1 Td (-0.100) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 284.8 435.1 Td (Mast assembly offset \(behind base centre\)) Tj ET
+0.972 0.975 0.980 rg 54.0 416.0 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 419.7 Td (lidar_z) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 419.7 Td (0.460) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 284.8 419.7 Td (LiDAR height above ground) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 404.4 Td (cam_x / cam_z / cam_pitch) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 404.4 Td (-0.075 / 0.420 /) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 393.0 Td (0.2618) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 284.8 404.4 Td (Camera position and 15 degree downward tilt) Tj ET
+0.972 0.975 0.980 rg 54.0 373.9 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 377.7 Td (yaw_lim / pitch_lim) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 377.7 Td (2.618 / 2.0) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 284.8 377.7 Td (Joint limits: +/-150 deg yaw, +/-115 deg for each pitch) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 362.3 Td (finger_travel) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 199.1 362.3 Td (0.065) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 284.8 362.3 Td (Maximum prismatic finger opening) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 339.0 Td (Assembly calls at the bottom of the file) Tj ET
+0.955 0.955 0.930 rg 54.0 257.1 504.0 76.9 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 319.8 Td (<xacro:kobuki_base/>                       from base.xacro) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 309.0 Td (<xacro:mast_sensors/>                      from mast_sensors.xacro) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 298.2 Td (<xacro:arm_4dof side="left"  reflect="1"/>  from arm.xacro) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 287.4 Td (<xacro:arm_4dof side="right" reflect="-1"/> same macro, mirrored) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 276.6 Td (<xacro:bimanual_ros2_control/>             from ros2_control.xacro) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 265.7 Td (<xacro:bimanual_gazebo/>                   from gazebo_plugins.xacro) Tj ET
+0.990 0.960 0.900 rg 54.0 182.5 504.0 66.6 re f
+0.850 0.620 0.150 rg 54.0 182.5 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 232.1 Td (Vertical datum - important) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 218.6 Td (base_link sits at GROUND level directly under the base centre, not at the base body centre. That means every z) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 205.4 Td (value in this project reads directly as height above ground, which is why the LiDAR is "0.46" and the shoulder is) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 192.3 Td ("0.18". Keep this convention if you add links.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 157.0 Td (5.2  urdf/base.xacro - body, wheels, deck) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 140.2 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 140.2 Td (Defines two reusable inertia helper macros, cyl_inertial and box_inertial, which compute inertia tensors from) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 126.8 Td (mass and dimensions so no hand-computed numbers are needed.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 110.5 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 110.5 Td (base_footprint \(ground projection\) is the root link; base_link is fixed to it at the same position. The base shell is) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 97.2 Td (a cylinder with a cosmetic red bumper ring, mass 3.2 kg \(representing battery and electronics; a heavier base) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 83.9 Td (resists tipping under arm loads\).) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 545.5 22.0 Td (p. 6) Tj ET
+endstream
+endobj
+16 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 17 0 R >>
+endobj
+17 0 obj
+<< /Length 3188 >>
+stream
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 728.2 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 728.2 Td (deck_link is a thin disc fixed at 0.140 m - the plate the arms bolt to. On the real robot this is a hexagon; here a) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 714.9 Td (cylinder of the same radius.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 698.5 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 698.5 Td (Two continuous drive wheel joints, left_wheel_joint and right_wheel_joint, at +/-0.115 m in y, with friction) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 685.2 Td (coefficients set to 1.0. These are the joints the DiffDrive plugin drives.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 668.9 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 668.9 Td (Two caster spheres at x = +/-0.15 m with friction set to ZERO, so they support the chassis without resisting) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 655.6 Td (turns.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 632.5 Td (5.3  urdf/mast_sensors.xacro - the sensor mast) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 615.7 Td (Implements the twin-rod mast from the design blueprint: two vertical posts, each 0.14 m from the base centre on the) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 602.2 Td (rear half and symmetric about the centreline, joined by a crossbar that carries the sensors. All of it is one link) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 588.7 Td (\(mast_link\) with multiple visuals, because the mast is rigid - there is no reason to pay for extra links.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 569.5 Td (The two sensors, declared as Gazebo sensor tags) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 555.1 Td (LiDAR) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 132.0 555.1 Td (type gpu_lidar on lidar_link at z = 0.46. 360 samples over a full circle, range 0.12 to 8.0 m, 10 Hz,) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 132.0 542.5 Td (publishing on the Gazebo topic "scan".) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 527.9 Td (Camera) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 132.0 527.9 Td (type camera on camera_link at z = 0.42, pitched 15 degrees down. 640x480 RGB, 69 degree) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 132.0 515.3 Td (horizontal FOV, 15 Hz, publishing on "camera" with intrinsics on "camera_info".) Tj ET
+0.940 0.960 0.990 rg 54.0 439.4 504.0 66.6 re f
+0.200 0.400 0.700 rg 54.0 439.4 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 489.1 Td (Why the camera does object detection and the LiDAR does not) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 475.6 Td (A horizontal 2D scan plane at any practical mast height cannot intersect a 5-10 cm tall object lying on the floor. The) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 462.4 Td (LiDAR is therefore used for room structure, the forward safety guard, and finding the shelf board. Object detection) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 449.3 Td (and ranging are done from the camera image alone.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 545.5 22.0 Td (p. 7) Tj ET
+endstream
+endobj
+18 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 19 0 R >>
+endobj
+19 0 obj
+<< /Length 6309 >>
+stream
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 721.5 Td (5.4  urdf/arm.xacro - one arm, instantiated twice) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 704.7 Td (A single macro, arm_4dof, parameterised by side \("left"/"right"\) and reflect \(+1/-1\) so the same code generates both) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 691.2 Td (arms mirrored about the centreline. The kinematic chain is:) Tj ET
+0.955 0.955 0.930 rg 54.0 594.7 504.0 87.8 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 668.3 Td (base_link) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 657.4 Td (  --J1 \(revolute, yaw about z\) --> <side>_shoulder_link  \(40 mm riser\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 646.6 Td (  --J2 \(revolute, pitch about y\)--> <side>_upper_arm_link \(L1 = 160 mm\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 635.8 Td (  --J3 \(revolute, pitch about y\)--> <side>_forearm_link   \(L2 = 160 mm\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 625.0 Td (  --J4 \(revolute, pitch about y\)--> <side>_palm_link) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 614.1 Td (        + <side>_finger_l_link  \(prismatic, +y\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 603.3 Td (        + <side>_finger_r_link  \(prismatic, -y\)) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 576.2 Td (Conventions you must not break) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 561.4 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 561.4 Td (J1 is a yaw axis passing vertically through the shoulder, which is what makes the inverse kinematics decouple) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 548.1 Td (exactly into a yaw plus a planar three-pitch problem.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 531.7 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 531.7 Td (Positive pitch rotates the arm DOWNWARD \(right-hand rule about +y\). ik.py depends on this sign convention.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 515.4 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 515.4 Td (Finger joints are prismatic and POSITIVE MEANS OPEN - each finger moves outward by its joint value. Travel) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 502.1 Td (is 8 to 65 mm.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 485.7 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 485.7 Td (The palm is 145 mm wide so that it spans the full finger travel; if you shorten it, fully opened fingers will appear) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 472.4 Td (detached from the arm.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 456.1 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 456.1 Td (Finger pads carry friction coefficients of 1.8 \(high grip\), and each finger is 75 mm long - long enough to) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 442.8 Td (straddle the tallest object cross-section without the palm striking it.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 425.7 Td (Joint efforts and velocities) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 411.3 Td (J1-J3) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 142.0 411.3 Td (effort 6.0 N m, velocity 3.0 rad/s) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 396.7 Td (J4 \(wrist\)) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 142.0 396.7 Td (effort 4.0 N m, velocity 3.0 rad/s) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 382.1 Td (Fingers) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 142.0 382.1 Td (effort 30 N, velocity 0.2 m/s) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 367.5 Td (Rationale) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 142.0 367.5 Td (A 500 g payload at full 0.32 m extension needs about 1.6 N m at the shoulder, so 6 N m leaves) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 142.0 354.9 Td (margin for link weight - consistent with mid-tier Dynamixel XM-class servos.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 329.3 Td (5.5  urdf/ros2_control.xacro - the hardware interface) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 312.5 Td (Declares the ros2_control system that gz_ros2_control implements. All twelve controllable joints \(eight arm joints) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 298.9 Td (and four finger joints\) are listed with a position command interface and position plus velocity state interfaces. Finger) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 285.4 Td (joints get an initial value of 0.060 \(open\).) Tj ET
+0.990 0.960 0.900 rg 54.0 210.0 504.0 66.6 re f
+0.850 0.620 0.150 rg 54.0 210.0 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 259.7 Td (The single most important number in the project) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 246.2 Td (This file sets position_proportional_gain to 15.0. The gz_ros2_control default is 0.1, which produces roughly a) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 233.0 Td (ten-second lag: the arms never reach their commanded poses, sag under gravity and drag on the floor while) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 219.9 Td (driving. If arm behaviour ever looks sluggish or droopy again, check this value first.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 184.5 Td (5.6  urdf/gazebo_plugins.xacro - three plugins) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 168.1 Td (DiffDrive) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 172.0 168.1 Td (Drives left_wheel_joint and right_wheel_joint from /cmd_vel, publishes /odom and a TF) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 172.0 155.5 Td (stream on /tf_gz at 30 Hz, with acceleration limits.) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 140.9 Td (DetachableJoint x3) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 172.0 140.9 Td (One per object. Each can create or destroy a rigid fixed joint between left_palm_link and that) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 172.0 128.4 Td (object model's "link", commanded on /grasp/<obj>/attach and /grasp/<obj>/detach, with) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 172.0 115.8 Td (feedback on /grasp/<obj>/state. This IS the grasp.) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 101.2 Td (gz_ros2_control) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 172.0 101.2 Td (Hosts the controller manager inside the Gazebo process and loads config/controllers.yaml.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 545.5 22.0 Td (p. 8) Tj ET
+endstream
+endobj
+20 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 21 0 R >>
+endobj
+21 0 obj
+<< /Length 2792 >>
+stream
+0.990 0.960 0.900 rg 54.0 671.4 504.0 66.6 re f
+0.850 0.620 0.150 rg 54.0 671.4 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 721.0 Td (Behaviour you must know about DetachableJoint) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 707.5 Td (These joints exist ATTACHED when the world loads. That is why the first thing mission_node does is send) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 694.3 Td (confirmed detach commands for every object. In the single-object worlds, the plugins for the two absent objects log) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 681.2 Td (errors at startup and then sit inert - that is expected and harmless.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 645.9 Td (5.7  config/controllers.yaml - four controllers) Tj ET
+0.900 0.930 0.970 rg 54.0 621.5 504.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 58.0 627.3 Td (Controller) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 194.1 627.3 Td (Type) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 325.1 627.3 Td (Joints / interface) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 610.9 Td (joint_state_broadcaster) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 194.1 610.9 Td (JointStateBroadcaster) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 325.1 610.9 Td (publishes all 12 joints on /joint_states) Tj ET
+0.972 0.975 0.980 rg 54.0 591.8 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 595.6 Td (left_arm_controller) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 194.1 595.6 Td (JointTrajectoryController) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 325.1 595.6 Td (left_j1..left_j4, position command, spline interpolation) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 580.2 Td (right_arm_controller) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 194.1 580.2 Td (JointTrajectoryController) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 325.1 580.2 Td (right_j1..right_j4, position command, spline interpolation) Tj ET
+0.972 0.975 0.980 rg 54.0 561.1 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 564.9 Td (gripper_controller) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 194.1 564.9 Td (JointGroupPositionController) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 325.1 564.9 Td (the four finger joints, driven by one Float64MultiArray) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 542.5 Td (The manager runs at 200 Hz with use_sim_time true. Trajectory goal time tolerance is set to 0 and non-zero end) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 529.3 Td (velocity is allowed, so the controllers accept the multi-waypoint trajectories the mission streams without rejecting them) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 516.0 Td (for timing.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 545.5 22.0 Td (p. 9) Tj ET
+endstream
+endobj
+22 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 23 0 R >>
+endobj
+23 0 obj
+<< /Length 7110 >>
+stream
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 721.0 Td (6.  Package 2 - kobuki_bimanual_gazebo) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 715.0 m 558.0 715.0 l S
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 693.0 Td (Build type ament_cmake. Installs worlds/, models/ and launch/. This package holds the environment and the) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 679.2 Td (single launch file that starts everything.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 653.9 Td (6.1  models/ - four models) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 637.1 Td (Each model directory holds a model.config \(metadata Gazebo reads to index the model\) and a model.sdf \(the actual) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 623.6 Td (geometry, mass, inertia and material\). They are referenced from the worlds as model://<name>, which resolves) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 610.1 Td (because the launch file appends models/ to GZ_SIM_RESOURCE_PATH.) Tj ET
+0.900 0.930 0.970 rg 54.0 584.0 504.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 58.0 589.7 Td (Model) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 128.6 589.7 Td (Contents) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 330.2 589.7 Td (Notes) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 573.4 Td (bottle) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 128.6 573.4 Td (Cylinder r 0.03 x 0.20, mass 0.15 kg, plus a small) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 128.6 562.0 Td (cap visual) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 330.2 573.4 Td (Orange, highly saturated so the colour filter is) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 330.2 562.0 Td (unambiguous) Tj ET
+0.972 0.975 0.980 rg 54.0 520.2 504.0 37.1 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 546.7 Td (bowl) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 128.6 546.7 Td (Cylinder r 0.04 x 0.10, mass 0.20 kg, with a rim) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 128.6 535.3 Td (visual) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 330.2 546.7 Td (A tall cup rather than a shallow bowl: a shallow 10) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 330.2 535.3 Td (cm-wide dish left only 6 mm of finger clearance per side,) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 330.2 524.0 Td (which is not a workable grasp) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 508.6 Td (cracker_box) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 128.6 508.6 Td (Box 0.06 x 0.08 x 0.18, mass 0.25 kg) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 330.2 508.6 Td (Green; 8 cm width leaves 16 mm of finger clearance per) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 330.2 497.3 Td (side) Tj ET
+0.972 0.975 0.980 rg 54.0 466.8 504.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 481.9 Td (shelf) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 128.6 481.9 Td (Static: 0.25 x 0.40 slab with its top surface at 0.12) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 128.6 470.6 Td (m, four legs, and a 0.40 x 0.60 m back board) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 330.2 481.9 Td (The back board exists so the 0.46 m LiDAR plane can see) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 330.2 470.6 Td (the shelf. All surfaces are near-zero saturation grey) Tj ET
+0.990 0.960 0.900 rg 54.0 391.2 504.0 66.6 re f
+0.850 0.620 0.150 rg 54.0 391.2 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 440.8 Td (Palette rule - do not repaint these) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 427.3 Td (The shelf is grey and the arm links are desaturated slate on purpose. Wooden brown shares a hue family with the) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 414.1 Td (orange bottle, and saturated blue arms fall inside the bowl colour mask. Either one produces confident false) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 401.0 Td (detections. If you add scenery, keep it desaturated.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 365.7 Td (6.2  worlds/ - four worlds) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 348.9 Td (All four share the same room: a 6 x 6 m floor with four low walls, a sun light, physics at a 1 ms step, and the) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 335.3 Td (Physics, UserCommands, SceneBroadcaster and Sensors \(ogre2\) system plugins. The shelf sits at x = -1.2, y = 0) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 321.8 Td (with its front face toward +x. The robot spawns at the origin facing +x.) Tj ET
+0.900 0.930 0.970 rg 54.0 295.7 504.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 58.0 301.5 Td (World) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 128.6 301.5 Td (Objects present) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 249.5 301.5 Td (Object poses) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 285.1 Td (main.sdf) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 128.6 285.1 Td (bottle, bowl, cracker_box) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 249.5 285.1 Td (Spread in front of the robot at roughly \(1.6, 0\), \(1.3, -1.0\) and \(1.2, 1.1\) - each) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 249.5 273.8 Td (lying down and angled so its long axis points back toward the robot start area) Tj ET
+0.972 0.975 0.980 rg 54.0 254.7 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 258.4 Td (bottle.sdf) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 128.6 258.4 Td (bottle only) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 249.5 258.4 Td (Straight ahead at \(1.6, 0\), lying) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 243.1 Td (bowl.sdf) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 128.6 243.1 Td (bowl only) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 249.5 243.1 Td (Straight ahead at \(1.6, 0\), lying) Tj ET
+0.972 0.975 0.980 rg 54.0 224.0 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 227.7 Td (box.sdf) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 128.6 227.7 Td (cracker_box only) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 249.5 227.7 Td (Straight ahead at \(1.6, 0\), lying) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 205.4 Td ("Lying" is expressed as a pitch of 1.5708 rad in the include pose, which tips the object's long axis from vertical to) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 192.1 Td (horizontal. The z value in each pose equals the object's resting half-thickness \(for example 0.041 for the bowl, whose) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 178.9 Td (radius is 0.04\) so it starts exactly on the floor rather than dropping into it.) Tj ET
+0.940 0.960 0.990 rg 54.0 103.6 504.0 66.6 re f
+0.200 0.400 0.700 rg 54.0 103.6 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 153.2 Td (Why the objects are angled toward the robot start area) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 139.7 Td (The grasp choreography assumes the object's long axis is aligned with the approach direction, because the two) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 126.6 Td (hands grip its two ends front-and-back. The mission enforces this by always approaching from a central scan hub. If) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 113.4 Td (you move objects, keep their axes pointing roughly at the origin.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 10) Tj ET
+endstream
+endobj
+24 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 25 0 R >>
+endobj
+25 0 obj
+<< /Length 3991 >>
+stream
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 721.5 Td (6.3  launch/sim.launch.py - the bring-up file) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 704.7 Td (One file starts every process, in a guaranteed order. It declares two launch arguments, sets the model search path,) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 691.2 Td (and then builds a chain of event handlers so that nothing starts before its prerequisite has finished.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 672.0 Td (What it declares and starts) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 657.7 Td (world \(arg\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 657.7 Td (default "main"; selects worlds/<world>.sdf) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 643.2 Td (autostart \(arg\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 643.2 Td (default "true"; passed to mission_node so you can load the sim without running the) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 630.7 Td (mission) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 616.3 Td (GZ_SIM_RESOURCE_PATH) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 616.3 Td (appended with this package's models/ directory so model:// URIs resolve) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 601.8 Td (gz_sim) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 601.8 Td (includes ros_gz_sim/gz_sim.launch.py with gz_args "-r -v3 <world path>" \(-r starts the) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 589.3 Td (world running\)) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 574.9 Td (robot_state_publisher) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 574.9 Td (robot_description parameter is the OUTPUT OF RUNNING xacro on robot.urdf.xacro at) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 562.4 Td (launch time) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 548.0 Td (ros_gz_sim create) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 548.0 Td (spawns the robot from the /robot_description topic at x 0, y 0, z 0.005, named) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 535.5 Td (kobuki_bimanual) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 521.0 Td (ros_gz_bridge) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 521.0 Td (one parameter_bridge process carrying clock, scan, camera, camera_info, cmd_vel,) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 508.6 Td (odom, TF and the nine grasp topics; remaps /tf_gz to /tf) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 488.9 Td (The startup ordering chain - why it is strictly serial) Tj ET
+0.955 0.955 0.930 rg 54.0 417.8 504.0 66.1 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 469.7 Td (spawn_robot  --OnProcessExit-->  joint_state_broadcaster spawner) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 458.9 Td (             --OnProcessExit-->  left_arm_controller spawner) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 448.1 Td (             --OnProcessExit-->  right_arm_controller spawner) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 437.2 Td (             --OnProcessExit-->  gripper_controller spawner) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 426.4 Td (             --OnProcessExit--> [3 s timer] perception + mission) Tj ET
+0.990 0.960 0.900 rg 54.0 343.1 504.0 66.6 re f
+0.850 0.620 0.150 rg 54.0 343.1 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 392.8 Td (Do not parallelise the spawners) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 379.3 Td (Running the four controller spawners at once makes them contend for the controller manager lock; during) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 366.1 Td (development this caused load failures and the mission starting while the right arm controller was still inactive - so) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 353.0 Td (one arm silently sat out the grasp. The serial chain plus a readiness gate inside mission_node is what prevents that.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 11) Tj ET
+endstream
+endobj
+26 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 27 0 R >>
+endobj
+27 0 obj
+<< /Length 6694 >>
+stream
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 721.0 Td (7.  Package 3 - kobuki_bimanual_behavior) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 715.0 m 558.0 715.0 l S
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 693.0 Td (Build type ament_python. Two console entry points are declared in setup.py: perception_node and mission_node.) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 679.2 Td (The other three modules are libraries. ik.py and choreography.py import nothing but the standard library math) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 665.4 Td (module, which is what makes them unit testable without ROS.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 640.1 Td (7.1  ik.py - analytic forward and inverse kinematics) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 623.3 Td (Mirrors the arm geometry from the xacro as module constants: SHOULDER_X 0.095, SHOULDER_Y 0.08875,) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 609.8 Td (SHOULDER_Z 0.180, L1 0.160, L2 0.160, LG 0.070 \(wrist to grasp point\), YAW_LIM 2.618, PITCH_LIM 2.0.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 590.6 Td (Public functions) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 576.3 Td (shoulder\(side\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 576.3 Td (Returns the shoulder position for side = +1 \(left\) or -1 \(right\).) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 561.8 Td (fk\(q, side\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 561.8 Td (Forward kinematics. Given joint vector [q1..q4] returns the grasp point as \(x, y, z,) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 549.3 Td (pitch\) in base_link.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 534.9 Td (solve\(x, y, z, pitch, side\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 534.9 Td (Inverse kinematics. Returns [q1..q4] or raises IKError.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 520.4 Td (reachable\(x, y, z, pitch, side\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 520.4 Td (Boolean convenience wrapper around solve.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 500.7 Td (How solve works) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 485.9 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 485.9 Td (The target is the GRASP POINT - the spot between the finger pads, 0.070 m beyond the wrist - not the wrist) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 472.6 Td (itself.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 456.3 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 456.3 Td (q1 \(yaw\) comes directly from atan2 of the target offset from the shoulder. Because the yaw axis passes) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 443.0 Td (vertically through the shoulder, this decouples exactly.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 426.6 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 426.6 Td (The wrist position is back-computed from the target by subtracting LG along the requested end-effector) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 413.3 Td (direction, reducing the rest to a planar two-link problem in the yawed vertical plane.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 397.0 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 397.0 Td (The elbow angle follows from the cosine rule. Both elbow-up and elbow-down branches are computed;) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 383.6 Td (solutions violating any joint limit are discarded, and the elbow-up branch is preferred when both are valid.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 367.3 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 367.3 Td (If nothing survives, IKError is raised with a descriptive message. The mission catches this rather than) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 354.0 Td (commanding a bad pose.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 337.0 Td (Sign conventions - these must match the xacro exactly) Tj ET
+0.955 0.955 0.930 rg 54.0 265.8 504.0 66.1 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 317.8 Td (q1  yaw about +z,  0 = arm pointing along +x) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 306.9 Td (q2,q3,q4  pitch about +y;  POSITIVE PITCH = ARM MOVES DOWN) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 296.1 Td (target "pitch"  elevation of the end-effector axis:) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 285.3 Td (     0      = horizontal, pointing away from the shoulder) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 274.5 Td (  -pi/2     = pointing straight down \(this is the grasp approach\)) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 241.3 Td (7.2  choreography.py - where the arms go, and when) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 224.5 Td (Generates lists of waypoint PAIRS. One pair is \(\(x,y,z,pitch\) for the left hand, \(x,y,z,pitch\) for the right hand\). Both) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 211.0 Td (arms work on the robot centreline \(y = 0\) except during placement, where a lateral offset is applied.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 191.8 Td (Constants) Tj ET
+0.900 0.930 0.970 rg 54.0 169.4 504.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 58.0 175.2 Td (Constant) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 189.0 175.2 Td (Value) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 289.8 175.2 Td (Meaning) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 158.8 Td (GRASP_FORWARD) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 189.0 158.8 Td (0.30) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 289.8 158.8 Td (Object centre distance ahead of the base centre at grasp time) Tj ET
+0.972 0.975 0.980 rg 54.0 139.7 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 143.5 Td (FLIP_X / FLIP_Z) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 189.0 143.5 Td (0.35 / 0.20) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 289.8 143.5 Td (Object centre position while flipping) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 128.1 Td (HOVER_DZ) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 189.0 128.1 Td (0.12) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 289.8 128.1 Td (Pre-grasp hover height above the lying object centre) Tj ET
+0.972 0.975 0.980 rg 54.0 109.0 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 112.8 Td (PHI_LIFT) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 189.0 112.8 Td (0.35) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 289.8 112.8 Td (Radians of pre-rotation applied during the lift phase) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 97.4 Td (CLEAR_DZ) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 189.0 97.4 Td (0.08) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 289.8 97.4 Td (Vertical clearance move after release) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 12) Tj ET
+endstream
+endobj
+28 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 29 0 R >>
+endobj
+29 0 obj
+<< /Length 3946 >>
+stream
+0.900 0.930 0.970 rg 54.0 720.6 504.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 58.0 726.4 Td (Constant) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 189.0 726.4 Td (Value) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 289.8 726.4 Td (Meaning) Tj ET
+0.972 0.975 0.980 rg 54.0 694.9 504.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 710.0 Td (TUCK_LEFT / TUCK_RIGHT) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 189.0 710.0 Td ([0.8,-1.5,1.85,1.2] /) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 189.0 698.7 Td (mirrored) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 289.8 710.0 Td (Folded travel pose in JOINT space - hands high at the sides, out of) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 289.8 698.7 Td (the camera view) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 683.3 Td (STAGE_LEFT / STAGE_RIGHT) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 189.0 683.3 Td ([-0.3,-1.0,1.5,0.6] /) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 189.0 672.0 Td (mirrored) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 289.8 683.3 Td (Intermediate pose so tuck-to-grasp interpolation cannot sweep the) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 289.8 672.0 Td (wrist through the base deck) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 648.7 Td (The generators) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 634.4 Td (_stations\(cx, cz, phi, s\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 202.0 634.4 Td (The heart of the module. For an object whose centre is at \(cx, 0, cz\) with its axis at) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 202.0 622.0 Td (angle phi from horizontal, it returns the two hand grasp points at +/-s along that axis,) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 202.0 609.5 Td (with the hand pitch set to phi - pi/2. Everything else is built from this.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 595.1 Td (grasp_waypoints) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 202.0 595.1 Td (Two pairs: hover above the lying object, then descend to grasp height. Hands point) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 202.0 582.6 Td (straight down.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 568.1 Td (flip_waypoints) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 202.0 568.1 Td (Twelve pairs in two phases. Phase A \(4 pairs\) raises the object centre from the grasp) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 202.0 555.7 Td (spot to the hover point while pre-rotating only to PHI_LIFT. Phase B \(8 pairs\) rotates) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 202.0 543.2 Td (phi the rest of the way to pi/2 about the now-fixed centre.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 528.7 Td (place_waypoints) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 202.0 528.7 Td (One pair: object upright \(phi = pi/2\) lowered to the shelf height, shifted laterally by) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 202.0 516.3 Td (y_off.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 501.8 Td (clear_waypoints) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 202.0 501.8 Td (One pair: same lateral position, CLEAR_DZ higher, so the hands lift straight off the) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 202.0 489.4 Td (placed object.) Tj ET
+0.940 0.960 0.990 rg 54.0 413.6 504.0 66.6 re f
+0.200 0.400 0.700 rg 54.0 413.6 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 463.2 Td (Why the flip is two-phased) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 449.7 Td (A single continuous arc from the floor to upright drove the lower hand into the region too close to its own shoulder,) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 436.5 Td (where the elbow angle exceeds the joint limit. Lifting first and rotating afterwards at a farther-out hover point keeps) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 423.4 Td (both wrists inside the reachable band the whole way. The offline test proves this for every waypoint.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 13) Tj ET
+endstream
+endobj
+30 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 31 0 R >>
+endobj
+31 0 obj
+<< /Length 6645 >>
+stream
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 721.5 Td (7.3  arm_commander.py - waypoints to ROS messages) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 704.7 Td (A thin translation layer. It owns the joint name lists \(LEFT_JOINTS, RIGHT_JOINTS\) and converts joint vectors or) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 691.2 Td (cartesian waypoint pairs into trajectory_msgs/JointTrajectory.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 673.2 Td (joint_traj\(names, q_list, dt, t0\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 227.0 673.2 Td (Builds a trajectory straight from joint vectors, spaced dt seconds apart starting at) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 227.0 660.7 Td (t0. Used for tuck and staging poses.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 646.2 Td (pair_trajs\(waypoint_pairs, dt, t0\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 227.0 646.2 Td (Runs ik.solve on every waypoint for the correct side and returns a matched \(left,) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 227.0 633.8 Td (right\) trajectory pair. Raises IKError if any waypoint is unreachable - the mission) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 227.0 621.3 Td (never sends a partially valid motion.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 606.8 Td (final_positions\(traj\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 227.0 606.8 Td (Dict of joint name to final commanded position; used to test for arrival.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 592.4 Td (total_time\(traj\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 227.0 592.4 Td (Duration of the last point, used to size the wait.) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 573.6 Td (Because both trajectories in a pair share identical timestamps, the two joint trajectory controllers execute them in) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 560.4 Td (lockstep, which is what keeps the rigid two-hand constraint from being violated during the flip.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 535.2 Td (7.4  perception_node.py - camera to detections) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 518.4 Td (A single ROS node. Subscribes to /camera \(sensor_msgs/Image\) and /camera_info, publishes /detections) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 504.9 Td (\(std_msgs/String containing JSON\). It runs on every camera frame, roughly 15 Hz.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 485.7 Td (Parameters it reads \(from mission_params.yaml\)) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 471.4 Td (cam_height / cam_pitch / cam_x) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 471.4 Td (0.42 m, 0.2618 rad, -0.075 m - the camera pose used for geometry) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 456.9 Td (min_area) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 456.9 Td (120 px, the smallest blob accepted as a detection) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 442.5 Td (objects) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 442.5 Td (list of object names to look for) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 428.0 Td (<object>.hsv_lo / hsv_hi) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 428.0 Td (per-object HSV threshold bounds in OpenCV ranges \(H 0-179, S and V 0-255\)) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 408.3 Td (The per-frame algorithm, in order) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 393.5 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 393.5 Td (on_image converts the raw buffer to a numpy array and then to HSV \(handling both rgb8 and bgr8 encodings\).) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 377.2 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 377.2 Td (For each object, cv2.inRange builds a colour mask, findContours extracts blobs, and the largest by area is) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 363.9 Td (kept if it exceeds min_area.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 347.5 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 347.5 Td (From that blob's bounding rectangle it takes the horizontal midpoint \(for bearing\) and the BOTTOM pixel row) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 334.2 Td (\(for range\).) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 317.9 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 317.9 Td (ground_range\(v_bottom\) computes the depression angle as cam_pitch + atan2\(v - cy, fy\), then returns) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 304.6 Td (cam_height / tan\(depression\) - the horizontal distance from the camera to the point where the object meets the) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 291.2 Td (floor. Returns None if the depression is too shallow to intersect the floor.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 274.9 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 274.9 Td (range_base adds cam_x, converting a camera-relative distance into a distance from the base centre, which is) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 261.6 Td (the frame the mission reasons in.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 245.2 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 245.2 Td (bearing is -atan2\(u_mid - cx, fx\): positive means the object is to the robot's left, matching the sign of angular) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 231.9 Td (velocity.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 215.6 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 215.6 Td (est_h is blob_height_px * range / fy - the apparent PHYSICAL height of the object in metres. A lying bottle) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 202.3 Td (measures about 6 cm, an upright one about 20 cm, which is how the mission tells them apart.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 185.9 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 185.9 Td (All results are packed into one JSON dict and published, so the mission has a single self-describing topic to) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 172.6 Td (read.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 155.6 Td (Example /detections payload) Tj ET
+0.955 0.955 0.930 rg 54.0 95.3 504.0 55.3 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 136.4 Td ({"bottle": {"found": true, "bearing": 0.021, "range_base": 1.43,) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 125.6 Td (            "est_h": 0.062, "area": 812},) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 114.7 Td ( "bowl":   {"found": false},) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 103.9 Td ( "cracker_box": {"found": true, "bearing": -0.55, ...}}) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 14) Tj ET
+endstream
+endobj
+32 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 33 0 R >>
+endobj
+33 0 obj
+<< /Length 670 >>
+stream
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 727.5 Td (Intrinsics) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 712.9 Td (Focal lengths default to values derived from the modelled 640 px width and 69 degree horizontal FOV, and are) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 699.7 Td (overwritten by on_info as soon as a real /camera_info message arrives. So the geometry is correct even if you change) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 686.4 Td (the camera resolution in the xacro.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 15) Tj ET
+endstream
+endobj
+34 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 35 0 R >>
+endobj
+35 0 obj
+<< /Length 7681 >>
+stream
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 721.5 Td (7.5  mission_node.py - the mission state machine) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 704.7 Td (The largest file in the project and the one that decides everything. It is a ROS node whose callbacks keep a small) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 691.2 Td (world model up to date, plus a worker THREAD that runs the mission as straight-line procedural code. This is) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 677.7 Td (deliberate: the mission reads top to bottom like a recipe instead of being scattered across callbacks.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 658.4 Td (Structure of the file) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 644.1 Td (norm_ang\(a\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 644.1 Td (Module helper; wraps an angle into -pi..pi.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 629.7 Td (DEFAULT_OBJECTS) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 629.7 Td (Fallback per-object geometry, overridden by the parameter file.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 615.2 Td (ARM_JOINTS) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 615.2 Td (The 12 joint names used by the readiness gate.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 600.7 Td (MissionNode.__init__) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 600.7 Td (Reads parameters, creates publishers and subscriptions, then starts the worker thread.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 586.3 Td (Callbacks) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 586.3 Td (_on_det, _on_odom, _on_js, _on_scan, plus one lambda subscription per object for) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 573.8 Td (grasp state.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 559.4 Td (Low-level helpers) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 559.4 Td (log, cmd, stop, fresh, grippers, set_grasp, send_pair, move_arms, tuck, wait_odom.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 544.9 Td (Base motion) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 544.9 Td (rotate_by, rotate_until_found, center_on, drive_odom, goto.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 530.4 Td (Docking) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 530.4 Td (_board_cluster, _dock_servo, dock_to_shelf.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 516.0 Td (Task level) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 516.0 Td (approach, pick_flip_place.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 501.5 Td (Top level) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 192.0 501.5 Td (_safe_run wrapping run\(\).) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 481.8 Td (The world model kept by callbacks) Tj ET
+0.900 0.930 0.970 rg 54.0 459.5 504.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 58.0 465.2 Td (Field) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 168.9 465.2 Td (Filled by) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 269.7 465.2 Td (Contents) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 448.9 Td (self.det / det_stamp) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 168.9 448.9 Td (_on_det) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 269.7 448.9 Td (Latest parsed /detections dict and its arrival time) Tj ET
+0.972 0.975 0.980 rg 54.0 429.8 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 433.5 Td (self.odom) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 168.9 433.5 Td (_on_odom) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 269.7 433.5 Td (\(x, y, yaw\) - yaw extracted from the quaternion) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 418.2 Td (self.joints) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 168.9 418.2 Td (_on_js) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 269.7 418.2 Td (joint name to position, all 12 joints) Tj ET
+0.972 0.975 0.980 rg 54.0 399.1 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 402.8 Td (self.scan) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 168.9 402.8 Td (_on_scan) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 269.7 402.8 Td (The full LaserScan message, kept for docking) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 387.5 Td (self.front_min) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 168.9 387.5 Td (_on_scan) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 269.7 387.5 Td (Closest valid return in a ~30 degree forward sector - the safety guard) Tj ET
+0.972 0.975 0.980 rg 54.0 368.4 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 372.1 Td (self.grasp_state) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 168.9 372.1 Td (per-object lambda) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 269.7 372.1 Td (obj name to "attached" or "detached", straight from the plugin) Tj ET
+0.940 0.960 0.990 rg 54.0 292.7 504.0 66.6 re f
+0.200 0.400 0.700 rg 54.0 292.7 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 342.4 Td (fresh\(name\) - the staleness guard) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 328.9 Td (Every read of a detection goes through fresh\(\), which returns None if the last /detections message is older than 0.6) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 315.7 Td (s or if that object was not found in it. This is why a dead perception node makes the robot stop looking rather than) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 302.6 Td (act on stale data.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 273.2 Td (Key helpers explained) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 258.9 Td (grippers\(val, settle\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 258.9 Td (Publishes one Float64MultiArray of four identical finger positions, then sleeps to let) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 246.5 Td (them move.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 232.0 Td (set_grasp\(name, attach\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 232.0 Td (THE CLOSED-LOOP GRASP. Publishes the attach or detach command up to six) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 219.6 Td (times and waits for the plugin's state topic to report the wanted state. A single) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 207.1 Td (dropped message would otherwise leave an object silently welded to the palm,) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 194.6 Td (which poisons everything downstream.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 180.2 Td (send_pair\(traj_l, traj_r\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 180.2 Td (Publishes both arm trajectories, then polls /joint_states until every commanded joint) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 167.7 Td (is within 0.06 rad of its final target, or a deadline of the trajectory duration plus 3.5 s) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 155.2 Td (expires. Returns True only on convergence, which is how the mission detects a) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 142.8 Td (blocked arm.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 128.3 Td (move_arms\(pairs, dt, t0\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 128.3 Td (Convenience: pair_trajs then send_pair.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 113.9 Td (tuck\(\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 113.9 Td (Sends both arms to the folded travel pose.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 99.4 Td (rotate_by\(delta, note_seen,) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 86.9 Td (seen\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 99.4 Td (Integrates yaw from odometry and spins until delta is covered. When note_seen is) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 86.9 Td (given it records every object detected during the turn - this is the survey.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 16) Tj ET
+endstream
+endobj
+36 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 37 0 R >>
+endobj
+37 0 obj
+<< /Length 1481 >>
+stream
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 728.7 Td (rotate_until_found\(name\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 728.7 Td (Spins looking for one specific object; requires FOUR consecutive detections before) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 716.2 Td (accepting, which rejects single-frame colour noise.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 701.8 Td (center_on\(name, tol\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 701.8 Td (Proportional control on bearing until the object is centred within tol radians.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 687.3 Td (drive_odom\(dist, guard\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 687.3 Td (Straight drive by odometry, negative for reverse. With guard=True it aborts if) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 674.9 Td (front_min drops below front_guard.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 660.4 Td (goto\(gx, gy, gyaw, slow\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 660.4 Td (Turn-drive-turn to an odometry pose, with a re-aim if heading error exceeds 0.8 rad.) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 647.9 Td (slow=True caps speed at 0.14 m/s and turn rate at 0.35 rad/s, used whenever an) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 212.0 635.5 Td (object is being carried.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 17) Tj ET
+endstream
+endobj
+38 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 39 0 R >>
+endobj
+39 0 obj
+<< /Length 6914 >>
+stream
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 727.5 Td (Docking internals) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 713.2 Td (_board_cluster\(\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 713.2 Td (Groups contiguous scan returns that lie within +/-0.9 rad of straight ahead and closer than) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 700.7 Td (1.6 m. A candidate is accepted only if it has at least 3 beams, its PHYSICAL width) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 688.3 Td (\(computed as 2 * range * tan\(half angular span\)\) falls in 0.15-0.70 m, and it stands out in) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 675.8 Td (DEPTH - the beams just outside both edges must be missing or at least 0.4 m farther away.) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 663.4 Td (The width test alone is not enough: a wall clipped by the range limit can fake a narrow) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 650.9 Td (cluster, and the depth test is what rejects it.) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 636.4 Td (_dock_servo\(\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 636.4 Td (Servos onto an accepted cluster: forward or backward on range error toward) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 624.0 Td (shelf_stop_range, turning on bearing error, converging when the range is within 2 cm and) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 611.5 Td (the bearing within 0.04 rad. If no cluster is visible it performs a BOUNDED sweep of about) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 599.0 Td (+/-40 degrees rather than a free spin, so it can never lock onto something behind the robot.) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 586.6 Td (Returns "docked", "lost" or "notfound".) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 572.1 Td (dock_to_shelf\(\)) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 572.1 Td (Two attempts. A successful dock is cross-checked against odometry and rejected as a) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 559.7 Td (phantom if the two disagree by more than 0.6 m. Between attempts it reverses 0.35 m) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 547.2 Td (before turning \(the arms plus payload sweep about 0.45 m and would otherwise snag the) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 534.7 Td (shelf board\) and re-approaches. If both attempts fail it returns False and the placement) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 522.3 Td (happens at the odometry pose - a bounded fallback rather than wherever a servo happened) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 177.0 509.8 Td (to stop.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 490.1 Td (approach\(name\) - the two-stage drive) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 475.3 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 475.3 Td (Stage 1, visual servo: while the object is visible and its range_base exceeds approach_stop_range \(0.55 m\),) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 462.0 Td (drive forward at v_lin when the bearing is small and steer proportionally. The forward LiDAR guard aborts the) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 448.7 Td (approach if something is closer than front_guard.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 432.4 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 432.4 Td (Stage 2, blind creep: below 0.55 m the object leaves the camera field of view. Before losing it, the robot) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 419.0 Td (re-centres tightly \(tolerance 0.015 rad\) and refreshes its range estimate, then computes creep = \(object centre) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 405.7 Td (distance\) - grasp_forward and drives exactly that far on odometry with the guard disabled.) Tj ET
+BT /F1 9.8 Tf 0.350 0.450 0.600 rg 68.0 389.4 Td (-) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 389.4 Td (The object centre distance is range_base + half_len, because perception measures the near floor contact) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 78.0 376.1 Td (edge while the grasp needs the centre.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 359.0 Td (pick_flip_place\(name\) - the manipulation sequence in order) Tj ET
+0.955 0.955 0.930 rg 54.0 114.7 504.0 239.3 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 339.8 Td (grasp_z  = lying_z + grasp_z_off      hands grip above the centreline) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 329.0 Td (place_z  = z_place + grasp_z_off      same offset honoured at release) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 318.2 Td () Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 307.4 Td ( 1  grippers\(open_pos\)                 open both hands) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 296.5 Td ( 2  send STAGE_LEFT / STAGE_RIGHT      raise clear of the deck) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 285.7 Td ( 3  hover LEFT, wait, hover RIGHT      staggered: arms never cross) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 274.9 Td ( 4  move_arms\(grasp_waypoints\)         hover then vertical descent) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 264.1 Td (     -> if it fails: reopen, re-hover, retry once) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 253.2 Td (     -> if it fails again: open, tuck, back off, return False) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 242.4 Td ( 5  grippers\(close\)                    light-touch fit on the object) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 231.6 Td ( 6  set_grasp\(name, True\)              CONFIRMED rigid attach) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 220.8 Td ( 7  grippers\(close + 0.012\)            relieve fingers 12 mm) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 209.9 Td ( 8  move_arms\(flip_waypoints\)          lift then rotate to upright) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 199.1 Td ( 9  goto\(shelf_approach, slow=True\)    loaded transit, limited speed) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 188.3 Td (10  dock_to_shelf\(\)                    LiDAR-referenced final pose) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 177.5 Td (11  move_arms\(place_waypoints\(y_off\)\)  lower into this object's slot) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 166.6 Td (12  set_grasp\(name, False\)             CONFIRMED release) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 155.8 Td (13  grippers\(open_pos\)                 open hands) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 145.0 Td (14  move_arms\(clear_waypoints\(y_off\)\)  lift straight off the object) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 134.2 Td (15  drive_odom\(-backup_dist\)           reverse clear of the shelf) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 123.3 Td (16  tuck\(\)                             fold arms, ready for the next) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 18) Tj ET
+endstream
+endobj
+40 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 41 0 R >>
+endobj
+41 0 obj
+<< /Length 2998 >>
+stream
+0.990 0.960 0.900 rg 54.0 671.4 504.0 66.6 re f
+0.850 0.620 0.150 rg 54.0 671.4 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 721.0 Td (Step 7 is not cosmetic) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 707.5 Td (Once the rigid joint carries the object, closed fingers are a second controller fighting the first. Leaving them clamped) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 694.3 Td (made the object visibly shift and appear to pass through the gripper during the flip. Backing them off 12 mm) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 681.2 Td (removes the conflict while still looking like a grasp.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 651.9 Td (run\(\) - the top level) Tj ET
+0.955 0.955 0.930 rg 54.0 472.5 504.0 174.4 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 632.7 Td ( 1  wait for odometry                    \(_on_odom has fired\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 621.8 Td ( 2  wait for ALL 12 joints to report     readiness gate) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 611.0 Td ( 3  confirmed detach of every object     joints start ATTACHED) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 600.2 Td ( 4  open grippers, tuck arms             safe initial state) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 589.4 Td ( 5  survey: rotate_by\(2*pi + 0.3\)        record every object seen) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 578.5 Td ( 6  for each object, inside try/except:) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 567.7 Td (      a  return to the scan hub          repeatable approach angle) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 556.9 Td (      b  rotate_until_found              4 consecutive detections) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 546.1 Td (         \(fallback: second vantage point at x = 0.45\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 535.2 Td (      c  center_on                       square up to it) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 524.4 Td (      d  skip if already upright         est_h >= 0.7 * upright_h) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 513.6 Td (      e  approach                        servo + blind creep) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 502.8 Td (      f  pick_flip_place                 the whole manipulation) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 491.9 Td (      on ANY exception: release, open, tuck, reverse, next object) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 481.1 Td ( 7  log MISSION COMPLETE) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 454.9 Td (_safe_run wraps run\(\) so an unexpected error is logged and the base is stopped rather than leaving the robot driving.) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 441.7 Td (The per-object try/except inside the loop is what guarantees one bad object cannot end the mission.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 19) Tj ET
+endstream
+endobj
+42 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 43 0 R >>
+endobj
+43 0 obj
+<< /Length 8781 >>
+stream
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 721.5 Td (7.6  config/mission_params.yaml - every tunable number) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 704.7 Td (Two parameter blocks, one per node. This file is the first place to look when behaviour is wrong but the code is right.) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 685.5 Td (perception_node parameters) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 671.2 Td (cam_height, cam_pitch, cam_x) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 671.2 Td (Camera pose; must match the xacro) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 656.7 Td (min_area) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 656.7 Td (Minimum blob area in pixels) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 642.3 Td (bottle.hsv_lo / hsv_hi) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 642.3 Td (H 5-22 with a saturation floor of 170 - the high floor is what keeps wood and grey) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 629.8 Td (tones out of the orange mask) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 615.3 Td (bowl.hsv_lo / hsv_hi) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 615.3 Td (H 100-135 with a saturation floor of 130 - high enough to exclude the desaturated) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 602.9 Td (arm links, low enough that lighting washout does not hide the bowl) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 588.4 Td (cracker_box.hsv_lo / hsv_hi) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 588.4 Td (H 40-80, saturation floor 100) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 568.7 Td (mission_node parameters - global) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 554.4 Td (objects) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 554.4 Td (Which objects to hunt, IN PRIORITY ORDER) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 540.0 Td (grasp_forward) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 540.0 Td (0.30 m - object centre distance ahead of the base at grasp) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 525.5 Td (approach_stop_range) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 525.5 Td (0.55 m - where the visual servo hands over to the blind creep) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 511.1 Td (shelf_approach) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 511.1 Td ([-0.83, 0.0, pi] - the odometry pose used to get near the shelf before docking) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 496.6 Td (shelf_stop_range) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 496.6 Td (0.594 m - the LiDAR-measured board range that defines "docked") Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 482.1 Td (scan_hub) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 482.1 Td ([0.0, 0.0] - the central point the robot returns to before hunting each object) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 467.7 Td (backup_dist) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 467.7 Td (0.6 m reverse after placing) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 453.2 Td (open_pos) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 453.2 Td (0.062 m per finger when open) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 438.7 Td (v_lin, w_rot, scan_w) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 438.7 Td (0.22 m/s, 0.5 rad/s, 0.4 rad/s search spin) Tj ET
+BT /F2 9.3 Tf 0.100 0.200 0.350 rg 54.0 424.3 Td (front_guard) Tj ET
+BT /F1 9.3 Tf 0.150 0.150 0.150 rg 217.0 424.3 Td (0.35 m forward LiDAR safety stop) Tj ET
+BT /F2 10.5 Tf 0.200 0.200 0.280 rg 54.0 404.6 Td (mission_node parameters - per object) Tj ET
+0.900 0.930 0.970 rg 54.0 382.3 504.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 58.0 388.0 Td (Key) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 143.7 388.0 Td (Meaning) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 360.4 388.0 Td (bottle) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 425.9 388.0 Td (bowl) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 491.4 388.0 Td (box) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 371.7 Td (half_len) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 143.7 371.7 Td (Half the lying long dimension) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 360.4 371.7 Td (0.10) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 425.9 371.7 Td (0.05) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 491.4 371.7 Td (0.09) Tj ET
+0.972 0.975 0.980 rg 54.0 352.6 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 356.3 Td (lying_z) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 143.7 356.3 Td (Centre height when lying) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 360.4 356.3 Td (0.031) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 425.9 356.3 Td (0.041) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 491.4 356.3 Td (0.031) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 341.0 Td (s) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 143.7 341.0 Td (Grasp station offset along the axis) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 360.4 341.0 Td (0.050) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 425.9 341.0 Td (0.035) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 491.4 341.0 Td (0.050) Tj ET
+0.972 0.975 0.980 rg 54.0 321.9 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 325.6 Td (close) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 143.7 325.6 Td (Finger position when closed on it) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 360.4 325.6 Td (0.037) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 425.9 325.6 Td (0.047) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 491.4 325.6 Td (0.047) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 310.3 Td (grasp_z_off) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 143.7 310.3 Td (Grip this far above the centreline) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 360.4 310.3 Td (0.010) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 425.9 310.3 Td (0.010) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 491.4 310.3 Td (0.010) Tj ET
+0.972 0.975 0.980 rg 54.0 291.2 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 294.9 Td (z_place) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 143.7 294.9 Td (Object centre height at release) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 360.4 294.9 Td (0.225) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 425.9 294.9 Td (0.175) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 491.4 294.9 Td (0.215) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 279.6 Td (place_y_off) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 143.7 279.6 Td (Lateral slot on the shelf) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 360.4 279.6 Td (0.00) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 425.9 279.6 Td (+0.10) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 491.4 279.6 Td (-0.10) Tj ET
+0.972 0.975 0.980 rg 54.0 260.5 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 264.2 Td (upright_h) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 143.7 264.2 Td (True height when standing) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 360.4 264.2 Td (0.20) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 425.9 264.2 Td (0.10) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 491.4 264.2 Td (0.18) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 248.9 Td (check_upright) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 143.7 248.9 Td (Run the already-standing test?) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 360.4 248.9 Td (true) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 425.9 248.9 Td (false) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 491.4 248.9 Td (true) Tj ET
+0.940 0.960 0.990 rg 54.0 169.5 504.0 66.6 re f
+0.200 0.400 0.700 rg 54.0 169.5 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 219.1 Td (Two subtleties in this table) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 205.6 Td (place_y_off gives each object its own slot on the 0.40 m slab so a newly placed object cannot knock over an earlier) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 192.4 Td (one. check_upright is false for the bowl because a cylinder of similar height and width looks the same lying or) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 179.3 Td (standing, so the height test cannot distinguish its pose.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 144.0 Td (7.7  test/test_ik.py - the offline validation suite) Tj ET
+BT /F1 9.8 Tf 0.130 0.130 0.130 rg 54.0 127.2 Td (Runs with plain python3, no ROS, no Gazebo: "python3 test/test_ik.py" from the package directory. Four suites.) Tj ET
+0.900 0.930 0.970 rg 54.0 101.1 504.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 58.0 106.8 Td (Test) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 209.2 106.8 Td (What it asserts) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 90.5 Td (test_roundtrip_grid) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 90.5 Td (Over a grid of workspace poses for both arms, every reachable target solves and forward) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 79.1 Td (kinematics reproduces it to within 1e-9 m and rad) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 20) Tj ET
+endstream
+endobj
+44 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 45 0 R >>
+endobj
+45 0 obj
+<< /Length 2204 >>
+stream
+0.900 0.930 0.970 rg 54.0 720.6 504.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 58.0 726.4 Td (Test) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 209.2 726.4 Td (What it asserts) Tj ET
+0.972 0.975 0.980 rg 54.0 706.3 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 710.0 Td (test_unreachable_raises) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 710.0 Td (A target a metre away raises IKError instead of silently returning a bad solution) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 694.7 Td (test_mission_choreography_reachable) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 694.7 Td (THE IMPORTANT ONE. For all three objects it regenerates every grasp, flip, place and) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 683.3 Td (clearance waypoint exactly as the mission would - including the grasp height offsets and) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 672.0 Td (lateral placement offsets - and asserts each one is reachable by the correct arm within) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 660.6 Td (joint limits) Tj ET
+0.972 0.975 0.980 rg 54.0 630.2 504.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 645.3 Td (test_tuck_pose_within_limits) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 645.3 Td (Tuck and staging poses are inside joint limits and place the hands above the deck and) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 633.9 Td (inside the reach envelope) Tj ET
+0.910 0.960 0.910 rg 54.0 554.5 504.0 66.6 re f
+0.200 0.550 0.280 rg 54.0 554.5 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 604.2 Td (Run this before every commit) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 590.7 Td (This suite has already caught three real geometric defects: an elbow limit that was too tight, a flip arc that passed) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 577.5 Td (through an unreachable region, and two poses that overreached. It converts "the arm might not reach" from a) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 564.4 Td (runtime mystery into a build-time failure.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 21) Tj ET
+endstream
+endobj
+46 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 47 0 R >>
+endobj
+47 0 obj
+<< /Length 5475 >>
+stream
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 721.0 Td (8.  How the Files Interact) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 715.0 m 558.0 715.0 l S
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 686.5 Td (Build-time and launch-time flow) Tj ET
+0.955 0.955 0.930 rg 54.0 526.8 504.0 152.7 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 665.3 Td (robot.urdf.xacro  \(includes base, mast_sensors, arm,) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 654.5 Td (                   ros2_control, gazebo_plugins\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 643.7 Td (        |  xacro is executed BY THE LAUNCH FILE at startup) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 632.8 Td (        v) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 622.0 Td (  robot_description \(a big URDF string on a ROS topic\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 611.2 Td (        |                         |) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 600.4 Td (        v                         v) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 589.5 Td (robot_state_publisher     ros_gz_sim create  -->  robot in Gazebo) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 578.7 Td (  \(publishes /tf\)                                   |) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 567.9 Td (                                                    v) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 557.1 Td (                             plugins declared inside the URDF start:) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 546.2 Td (                             DiffDrive, 3x DetachableJoint,) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 535.4 Td (                             gz_ros2_control \(reads controllers.yaml\)) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 502.3 Td (Run-time data flow) Tj ET
+0.955 0.955 0.930 rg 54.0 320.9 504.0 174.4 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 481.1 Td (   Gazebo  --/camera, /camera_info-->  perception_node) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 470.3 Td (                                            |) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 459.4 Td (                                     /detections \(JSON\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 448.6 Td (                                            v) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 437.8 Td (   Gazebo  --/scan, /odom, /joint_states-->  mission_node) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 427.0 Td (   Gazebo  --/grasp/<obj>/state----------->  mission_node) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 416.1 Td (                                            |) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 405.3 Td (            /cmd_vel  -------------------->  DiffDrive  \(base moves\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 394.5 Td (            /<side>_arm_controller/joint_trajectory) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 383.7 Td (                      -------------------->  JTC -> joints move) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 372.8 Td (            /gripper_controller/commands) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 362.0 Td (                      -------------------->  fingers move) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 351.2 Td (            /grasp/<obj>/attach | detach -->  DetachableJoint) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 340.4 Td () Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 329.6 Td (   \(every Gazebo <-> ROS hop above passes through ros_gz_bridge\)) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 296.4 Td (Module-level dependencies inside the behaviour package) Tj ET
+0.955 0.955 0.930 rg 54.0 169.2 504.0 120.2 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 275.2 Td (mission_node.py) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 264.4 Td (   imports arm_commander  \(to build JointTrajectory messages\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 253.6 Td (   imports choreography   \(to get cartesian waypoints\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 242.8 Td (   imports ik             \(for single-pose solves + IKError\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 231.9 Td () Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 221.1 Td (arm_commander.py  imports ik) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 210.3 Td (choreography.py   imports nothing but math   <-- ROS-free) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 199.5 Td (ik.py             imports nothing but math   <-- ROS-free) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 188.6 Td (perception_node.py  standalone \(cv2, numpy, rclpy\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 177.8 Td (test/test_ik.py     imports ik + choreography only) Tj ET
+0.940 0.960 0.990 rg 54.0 94.5 504.0 66.6 re f
+0.200 0.400 0.700 rg 54.0 94.5 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 144.2 Td (The dependency shape is the point) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 130.7 Td (All geometry knowledge flows one way: xacro constants are mirrored in ik.py, choreography builds on ik's frame) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 117.5 Td (conventions, arm_commander translates, and mission_node orchestrates. Nothing below mission_node knows) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 104.4 Td (about ROS, which is exactly why the test suite can validate the whole motion plan offline.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 22) Tj ET
+endstream
+endobj
+48 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 49 0 R >>
+endobj
+49 0 obj
+<< /Length 8655 >>
+stream
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 721.0 Td (9.  Complete Interface Reference) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 715.0 m 558.0 715.0 l S
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 686.5 Td (Topics) Tj ET
+0.900 0.930 0.970 rg 54.0 662.1 504.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 58.0 667.9 Td (Topic) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 209.2 667.9 Td (Type) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 320.1 667.9 Td (Published by) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 451.1 667.9 Td (Consumed by) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 651.5 Td (/clock) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 651.5 Td (rosgraph_msgs/Clock) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 651.5 Td (Gazebo \(bridged\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 651.5 Td (every node) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 640.2 Td (\(use_sim_time\)) Tj ET
+0.972 0.975 0.980 rg 54.0 621.1 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 624.8 Td (/scan) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 624.8 Td (sensor_msgs/LaserScan) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 624.8 Td (LiDAR sensor \(bridged\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 624.8 Td (mission_node: _on_scan) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 609.5 Td (/camera) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 609.5 Td (sensor_msgs/Image) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 609.5 Td (camera sensor \(bridged\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 609.5 Td (perception_node:) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 598.1 Td (on_image) Tj ET
+0.972 0.975 0.980 rg 54.0 579.0 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 582.8 Td (/camera_info) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 582.8 Td (sensor_msgs/CameraInfo) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 582.8 Td (camera \(bridged\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 582.8 Td (perception_node: on_info) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 567.4 Td (/odom) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 567.4 Td (nav_msgs/Odometry) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 567.4 Td (DiffDrive \(bridged\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 567.4 Td (mission_node: _on_odom) Tj ET
+0.972 0.975 0.980 rg 54.0 537.0 504.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 552.1 Td (/tf) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 552.1 Td (tf2_msgs/TFMessage) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 552.1 Td (robot_state_publisher +) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 540.7 Td (DiffDrive \(remapped from /tf_gz\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 552.1 Td (visualisation) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 525.4 Td (/robot_description) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 525.4 Td (std_msgs/String) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 525.4 Td (robot_state_publisher) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 525.4 Td (controller_manager, create) Tj ET
+0.972 0.975 0.980 rg 54.0 506.3 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 510.0 Td (/joint_states) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 510.0 Td (sensor_msgs/JointState) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 510.0 Td (joint_state_broadcaster) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 510.0 Td (mission_node: _on_js) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 494.7 Td (/detections) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 494.7 Td (std_msgs/String \(JSON\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 494.7 Td (perception_node) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 494.7 Td (mission_node: _on_det) Tj ET
+0.972 0.975 0.980 rg 54.0 475.6 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 479.3 Td (/cmd_vel) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 479.3 Td (geometry_msgs/Twist) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 479.3 Td (mission_node: cmd\(\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 479.3 Td (DiffDrive \(bridged\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 464.0 Td (/left_arm_controller/joint_trajectory) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 464.0 Td (trajectory_msgs/JointTrajectory) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 464.0 Td (mission_node) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 464.0 Td (left JTC) Tj ET
+0.972 0.975 0.980 rg 54.0 444.9 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 448.6 Td (/right_arm_controller/joint_trajectory) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 448.6 Td (trajectory_msgs/JointTrajectory) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 448.6 Td (mission_node) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 448.6 Td (right JTC) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 433.3 Td (/gripper_controller/commands) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 433.3 Td (std_msgs/Float64MultiArray) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 433.3 Td (mission_node: grippers\(\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 433.3 Td (gripper controller) Tj ET
+0.972 0.975 0.980 rg 54.0 414.2 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 417.9 Td (/grasp/<obj>/attach) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 417.9 Td (std_msgs/Empty) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 417.9 Td (mission_node: set_grasp) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 417.9 Td (DetachableJoint \(bridged\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 402.6 Td (/grasp/<obj>/detach) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 402.6 Td (std_msgs/Empty) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 402.6 Td (mission_node: set_grasp) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 402.6 Td (DetachableJoint \(bridged\)) Tj ET
+0.972 0.975 0.980 rg 54.0 383.5 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 387.2 Td (/grasp/<obj>/state) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 209.2 387.2 Td (std_msgs/String) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 320.1 387.2 Td (DetachableJoint \(bridged\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 451.1 387.2 Td (mission_node: grasp_state) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 358.0 Td (Joint names - the full set of 12) Tj ET
+0.955 0.955 0.930 rg 54.0 295.7 504.0 55.3 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 336.8 Td (left_j1  left_j2  left_j3  left_j4      \(yaw, pitch, pitch, pitch\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 325.9 Td (right_j1 right_j2 right_j3 right_j4) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 315.1 Td (left_finger_l_joint   left_finger_r_joint     \(prismatic, + = open\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 304.3 Td (right_finger_l_joint  right_finger_r_joint) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 271.2 Td (Launch arguments) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 254.8 Td (world) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 142.0 254.8 Td (main | bottle | bowl | box \(default main\)) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 240.2 Td (autostart) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 142.0 240.2 Td (true | false \(default true\) - false loads the sim without running the mission) Tj ET
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 214.0 Td (10.  Frames and Geometry Reference) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 208.0 m 558.0 208.0 l S
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 179.5 Td (Frames) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 163.1 Td (base_footprint) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 167.0 163.1 Td (Root link, ground projection of the base centre.) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 148.5 Td (base_link) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 167.0 148.5 Td (Fixed to base_footprint at the SAME point, i.e. at GROUND level under the base centre. All z) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 167.0 135.9 Td (values therefore read as height above ground.) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 121.3 Td (odom) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 167.0 121.3 Td (Published by DiffDrive. Because the robot spawns at the world origin, the odom frame) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 167.0 108.7 Td (coincides with the world frame at startup - which is why shelf_approach can be written as a) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 167.0 96.1 Td (plain odometry coordinate.) Tj ET
+BT /F2 9.4 Tf 0.100 0.200 0.350 rg 54.0 81.5 Td (IK frame) Tj ET
+BT /F1 9.4 Tf 0.150 0.150 0.150 rg 167.0 81.5 Td (ik.py works entirely in base_link: x forward, y left, z up.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 23) Tj ET
+endstream
+endobj
+50 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 51 0 R >>
+endobj
+51 0 obj
+<< /Length 2130 >>
+stream
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 721.5 Td (Vertical stack, all above ground) Tj ET
+0.955 0.955 0.930 rg 54.0 583.4 504.0 131.1 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 700.3 Td (0.000  ground / base_link origin) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 689.5 Td (0.019  caster sphere centres) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 678.7 Td (0.038  wheel axle height) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 667.8 Td (0.125  top of the base shell) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 657.0 Td (0.140  arm mounting deck  <-- arms bolt here) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 646.2 Td (0.180  shoulder pitch axis \(J2\)   = deck + 40 mm riser) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 635.4 Td (0.420  camera) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 624.5 Td (0.460  LiDAR scan plane) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 613.7 Td () Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 602.9 Td (shelf:  0.120  slab top surface) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 592.1 Td (        0.600  top of the back board \(the LiDAR docking target\)) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 558.9 Td (Horizontal layout, in base_link) Tj ET
+0.955 0.955 0.930 rg 54.0 475.0 504.0 76.9 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 537.7 Td (arm mounts       x = +0.095,  y = +/-0.08875   \(radius 0.130\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 526.9 Td (mast + sensors   x = -0.100 \(rods at y = +/-0.099, radius 0.140\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 516.1 Td (camera           x = -0.075, pitched 15 deg down) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 505.3 Td (grasp stand-off  object centre at x = +0.30 \(grasp_forward\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 494.4 Td (flip / place     object centre at x = +0.35 \(FLIP_X\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 483.6 Td (reach            0.32 m geometric max, 0.20-0.25 m comfortable) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 24) Tj ET
+endstream
+endobj
+52 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 53 0 R >>
+endobj
+53 0 obj
+<< /Length 5150 >>
+stream
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 721.0 Td (11.  The Full Walkthrough) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 715.0 m 558.0 715.0 l S
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 693.0 Td (This is the section to read. It follows one complete run from the moment you press Enter to the MISSION) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 679.2 Td (COMPLETE line, and every step names the file and function that causes it. Where a log line appears in the) Tj ET
+BT /F1 10.0 Tf 0.130 0.130 0.130 rg 54.0 665.4 Td (terminal, it is quoted so you can match the narrative to what you see.) Tj ET
+0.940 0.960 0.990 rg 54.0 603.1 504.0 53.5 re f
+0.200 0.400 0.700 rg 54.0 603.1 3.5 53.5 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 639.6 Td (How to follow along) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 626.1 Td (Run the sim, keep the terminal visible, and read this section alongside it. The log lines quoted below are the actual) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 612.9 Td (strings the nodes print, in the order they print them.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 577.6 Td (Stage A - Launch and bring-up \(about 15 seconds\)) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 560.2 Td (A1   The launch file is evaluated) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 545.6 Td (sim.launch.py: generate_launch_description\(\) runs. It reads the world and autostart arguments, appends this) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 532.4 Td (package's models/ directory to GZ_SIM_RESOURCE_PATH \(so model:// URIs in the worlds resolve\), and builds the) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 519.1 Td (path worlds/<world>.sdf.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 500.1 Td (A2   Gazebo starts and loads the world) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 485.5 Td (The ros_gz_sim gz_sim.launch.py include is started with gz_args "-r -v3 <world path>". The -r flag means the world) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 472.2 Td (begins stepping immediately. Gazebo loads physics \(1 ms step\), the ground plane, four walls, the sun, the shelf at x =) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 459.0 Td (-1.2, and the object includes at their lying poses.) Tj ET
+0.955 0.955 0.930 rg 54.0 416.7 504.0 33.6 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 436.1 Td ([gazebo-1] [Msg] Loading SDF world file[.../worlds/main.sdf].) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 425.3 Td ([gazebo-1] [Msg] Gazebo Sim Server v8.15.0) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 398.3 Td (A3   The robot description is generated and published) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 383.7 Td (robot_state_publisher is started with its robot_description parameter set to Command\(['xacro ', robot.urdf.xacro]\) - so) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 370.4 Td (xacro is executed at this moment, expanding all six xacro files into one URDF string. The node publishes it on) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 357.2 Td (/robot_description and begins publishing /tf.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 338.1 Td (A4   The robot is spawned) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 323.5 Td (ros_gz_sim create reads /robot_description and injects the robot into the running world at \(0, 0, 0.005\) as model) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 310.3 Td ("kobuki_bimanual", then exits. The plugins declared inside the URDF now come alive: DiffDrive subscribes to) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 297.0 Td (/cmd_vel, the three DetachableJoint plugins create their joints \(ATTACHED\), and gz_ros2_control starts a controller) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 283.8 Td (manager inside the Gazebo process, reading controllers.yaml.) Tj ET
+0.955 0.955 0.930 rg 54.0 230.7 504.0 44.5 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 260.9 Td ([create-3] [INFO] Entity creation successful.) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 250.1 Td ([gazebo-1] [INFO] [gz_ros_control]: Loading controller_manager) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 239.3 Td ([gazebo-1] [INFO] The position_proportional_gain has been set to: 15) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 212.3 Td (A5   The bridge opens) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 197.7 Td (One parameter_bridge process translates every topic listed in the launch file between Gazebo transport and ROS 2,) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 184.4 Td (and remaps /tf_gz to /tf. Until this is up, no ROS node can see a sensor.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 165.4 Td (A6   Controllers activate one at a time) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 150.8 Td (Four spawner processes run in a strict chain, each triggered by the previous one exiting \(OnProcessExit\). Order:) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 137.5 Td (joint_state_broadcaster, then left_arm_controller, then right_arm_controller, then gripper_controller.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 25) Tj ET
+endstream
+endobj
+54 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 55 0 R >>
+endobj
+55 0 obj
+<< /Length 3640 >>
+stream
+0.955 0.955 0.930 rg 54.0 682.7 504.0 55.3 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 723.8 Td ([spawner-5] Configured and activated joint_state_broadcaster) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 713.0 Td ([spawner-6] Configured and activated left_arm_controller) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 702.2 Td ([spawner-7] Configured and activated right_arm_controller) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 691.3 Td ([spawner-8] Configured and activated gripper_controller) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 664.3 Td (A7   The behaviour nodes start) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 649.7 Td (When the gripper spawner exits, a 3 second TimerAction fires and both perception_node and mission_node are) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 636.5 Td (started with mission_params.yaml loaded and use_sim_time true.) Tj ET
+0.955 0.955 0.930 rg 54.0 594.2 504.0 33.6 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 613.6 Td ([perception_node] perception up, objects: [bottle, bowl, cracker_box]) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 602.8 Td ([mission_node]    mission: waiting for sim interfaces...) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 569.7 Td (Stage B - Mission initialisation) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 552.3 Td (B1   perception_node begins publishing immediately) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 537.7 Td (Its /camera subscription fires at roughly 15 Hz. Each frame runs on_image: HSV conversion, one cv2.inRange mask) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 524.4 Td (per object, largest contour, bounding rectangle, ground_range\(\) on the bottom pixel row, bearing from the horizontal) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 511.2 Td (offset, est_h from the blob height, then one JSON message on /detections. It does this continuously for the whole run,) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 497.9 Td (independent of what the mission is doing.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 478.9 Td (B2   mission_node waits for the world to be real) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 464.3 Td (run\(\) first calls wait_odom\(\), which blocks until _on_odom has stored a pose. It then blocks until all twelve names in) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 451.0 Td (ARM_JOINTS appear in self.joints, which are filled by _on_js from /joint_states. This is the readiness gate: it) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 437.8 Td (guarantees every controller is genuinely live before any command is sent.) Tj ET
+0.955 0.955 0.930 rg 54.0 406.3 504.0 22.8 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 414.9 Td ([mission_node] mission: all 12 joints reporting, controllers ready) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 387.9 Td (B3   Startup safety: release, open, tuck) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 373.3 Td (Because the DetachableJoint plugins load ATTACHED, the mission calls set_grasp\(name, False\) for every object.) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 360.1 Td (That helper publishes an Empty on /grasp/<obj>/detach and waits for "detached" to arrive on /grasp/<obj>/state,) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 346.8 Td (retrying up to six times. Then grippers\(0.062\) opens all four fingers, and tuck\(\) folds both arms to TUCK_LEFT /) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 333.6 Td (TUCK_RIGHT via arm_commander.joint_traj and send_pair.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 26) Tj ET
+endstream
+endobj
+56 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 57 0 R >>
+endobj
+57 0 obj
+<< /Length 5794 >>
+stream
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 721.5 Td (Stage C - SEARCH: the survey rotation) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 704.1 Td (C1   One full turn on the spot) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 689.5 Td (rotate_by\(2*pi + 0.3, note_seen=self.objects, seen=seen\) is called. Inside, it publishes Twist\(angular.z = scan_w = 0.4\)) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 676.3 Td (every 50 ms and integrates yaw differences from self.odom until the commanded angle is covered. The extra 0.3 rad is) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 663.0 Td (overlap so the sweep closes on itself.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 644.0 Td (C2   Recording what it sees while turning) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 629.4 Td (On every iteration it calls fresh\(name\) for each object. fresh\(\) reads the cached /detections dict, rejects it if older than) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 616.1 Td (0.6 s, and returns the entry only if that object was found. Any name that appears goes into the seen set. This is why) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 602.9 Td (the robot knows what is in the room before it moves toward anything - and why absent objects in the single-object) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 589.6 Td (worlds are skipped instantly instead of timing out.) Tj ET
+0.955 0.955 0.930 rg 54.0 547.3 504.0 33.6 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 566.8 Td ([mission_node] mission: survey rotation) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 555.9 Td ([mission_node] mission: survey saw [bottle, bowl, cracker_box]) Tj ET
+0.940 0.960 0.990 rg 54.0 485.8 504.0 53.5 re f
+0.200 0.400 0.700 rg 54.0 485.8 3.5 53.5 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 522.3 Td (If you see it spin more than once here) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 508.8 Td (That would mean detections are unstable. The survey is exactly one rotation; the shorter spins you see later are) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 495.7 Td (rotate_until_found\(\) reacquiring a specific object before its pickup.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 460.3 Td (Stage D - Per-object cycle, target acquisition) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 443.7 Td (The loop now runs once per object, in the priority order given by the objects parameter. Everything from here to the) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 430.5 Td (end of Stage G is wrapped in a try/except so a failure moves to the next object instead of ending the mission.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 411.4 Td (D1   Return to the scan hub) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 396.8 Td (If the robot is more than 0.15 m from scan_hub \(0, 0\), goto\(\) drives it back. This matters because the grasp) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 383.6 Td (choreography assumes the object's long axis is aligned with the approach direction; always starting from the same) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 370.3 Td (central point makes that true for every object.) Tj ET
+0.955 0.955 0.930 rg 54.0 328.0 504.0 33.6 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 347.5 Td ([mission_node] [bowl] returning to scan hub) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 336.7 Td ([mission_node] goto arrived: odom=\(-0.035, -0.006, yaw -0.05\)) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 309.6 Td (D2   Reacquire this specific object) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 295.0 Td (rotate_until_found\(name\) spins at scan_w and requires FOUR consecutive frames in which fresh\(name\) returns a) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 281.8 Td (detection before it accepts and stops. If 40 seconds pass without that, the robot drives to a second vantage point at) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 268.6 Td (\(0.45, 0\) and tries once more before giving up on the object.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 249.5 Td (D3   Square up) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 234.9 Td (center_on\(name, tol=0.03\) applies proportional control on the reported bearing, clamped to 0.4 rad/s, until the object is) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 221.7 Td (centred within 0.03 rad.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 202.6 Td (D4   Skip objects that are already standing) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 188.0 Td (If the object's check_upright flag is true and its est_h is at least 70 percent of its upright_h, it is already vertical and is) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 174.8 Td (skipped. A lying bottle reports about 0.06 m and an upright one about 0.20 m, so the test is decisive. The bowl has) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 161.5 Td (check_upright false because a cylinder that is as tall as it is wide looks identical either way.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 142.5 Td (D5   APPROACH - stage 1, visual servo) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 127.9 Td (approach\(name\) loops: while the object is visible and its range_base is greater than approach_stop_range \(0.55 m\), it) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 114.6 Td (drives at v_lin when the bearing is within 0.25 rad and steers at 1.2 x bearing \(clamped\). Each iteration also checks) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 101.4 Td (self.front_min, maintained by _on_scan from the forward LiDAR sector; if anything is closer than front_guard \(0.35 m\)) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 88.1 Td (the approach aborts rather than pushing into it.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 27) Tj ET
+endstream
+endobj
+58 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 59 0 R >>
+endobj
+59 0 obj
+<< /Length 1161 >>
+stream
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 727.6 Td (D6   APPROACH - stage 2, the blind creep) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 713.0 Td (At 0.55 m the object is about to leave the camera view. While it is still visible the robot re-centres tightly \(tolerance) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 699.8 Td (0.015 rad\) and refreshes its estimate, computing the object centre as range_base + half_len. It then drives exactly) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 686.5 Td (\(centre - grasp_forward\) metres on odometry with drive_odom\(guard=False\), which parks the object centre at 0.30 m) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 673.3 Td (ahead of the base centre - the pose the grasp choreography assumes.) Tj ET
+0.955 0.955 0.930 rg 54.0 631.0 504.0 33.6 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 650.4 Td ([mission_node] [bowl] approaching) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 639.6 Td ([mission_node] creeping 0.294 m by odometry) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 28) Tj ET
+endstream
+endobj
+60 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 61 0 R >>
+endobj
+61 0 obj
+<< /Length 5751 >>
+stream
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 721.5 Td (Stage E - IK GRASP) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 704.1 Td (E1   Open, then raise to the staging pose) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 689.5 Td (grippers\(open_pos\) opens all four fingers. Then a joint-space trajectory sends both arms to STAGE_LEFT /) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 676.3 Td (STAGE_RIGHT. This exists because the joint trajectory controller interpolates in JOINT space: going straight from the) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 663.0 Td (folded tuck pose to a low forward grasp pose swings the wrist down through the base deck on the way. The staging) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 649.8 Td (pose routes the motion up and over instead.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 630.7 Td (E2   Deploy to hover, one arm at a time) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 616.1 Td (Both hover stations sit on the centreline, so moving both arms at once makes them cross paths mid-swing. The) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 602.9 Td (mission solves the left hover pose with ik.solve\(..., +1\), publishes only the left trajectory, waits three seconds, then) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 589.6 Td (does the right with ik.solve\(..., -1\). The transient overlap disappears.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 570.6 Td (E3   Descend and close) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 556.0 Td (move_arms\(choreography.grasp_waypoints\(s, grasp_z, grasp_forward\)\) runs the two-waypoint descent. Internally:) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 542.7 Td (grasp_waypoints returns hover and grasp pairs with hand pitch DOWN \(-pi/2\) at x = grasp_forward +/- s;) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 529.5 Td (arm_commander.pair_trajs solves each with ik.solve and builds two time-matched JointTrajectory messages;) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 516.2 Td (send_pair publishes both and polls /joint_states until every joint is within 0.06 rad of target.) Tj ET
+0.955 0.955 0.930 rg 54.0 484.7 504.0 22.8 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 493.4 Td ([mission_node] [bowl] grasp: descend both grippers) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 467.1 Td (If send_pair does not converge - which in practice means a finger is touching the object and the arm has stalled - the) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 453.9 Td (mission reopens the fingers, lifts back to hover and retries the descent once. A second failure opens the hands, tucks,) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 440.7 Td (backs off 0.3 m and abandons the object without ever attaching, so nothing is welded at a wrong pose.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 421.6 Td (E4   Grip, then create the rigid constraint) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 407.0 Td (grippers\(close\) closes to the object's light-touch fit value. set_grasp\(name, True\) then publishes on /grasp/<obj>/attach) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 393.8 Td (and waits for the plugin to report "attached" on /grasp/<obj>/state, retrying if needed. Only after that confirmation does) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 380.5 Td (the mission proceed.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 361.5 Td (E5   Relieve the fingers) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 346.9 Td (grippers\(close + 0.012\) backs the fingers off 12 mm. From this moment the rigid joint carries the object; leaving the) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 333.6 Td (fingers clamped would mean two controllers fighting over the same body, which visibly shoved the object through the) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 320.4 Td (gripper during the flip.) Tj ET
+0.955 0.955 0.930 rg 54.0 288.9 504.0 22.8 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 297.5 Td ([mission_node] [bowl] attached; lifting + reorienting to upright) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 264.4 Td (Stage F - CO-MANIPULATION and REORIENTATION) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 247.0 Td (F1   Twelve synchronised waypoints) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 232.4 Td (move_arms\(choreography.flip_waypoints\(s, grasp_z, grasp_forward\)\) generates the flip. Phase A is four pairs that) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 219.1 Td (raise the object centre from the grasp spot to \(FLIP_X, FLIP_Z\) = \(0.35, 0.20\) while pre-rotating only to PHI_LIFT =) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 205.9 Td (0.35 rad. Phase B is eight pairs that rotate the axis angle the rest of the way to pi/2 about that now-fixed centre.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 186.8 Td (F2   What keeps the grasp valid) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 172.2 Td (Every pair comes from _stations\(cx, cz, phi, s\), which places the two hands at +/-s along the object axis with hand) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 159.0 Td (pitch phi - pi/2. So the hands are always exactly the object's length apart and always aligned with it. Because both) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 145.8 Td (trajectories carry identical timestamps, the two controllers execute them in lockstep and the rigid constraint is never) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 132.5 Td (stretched.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 107.4 Td (Stage G - Transit, docking and PLACEMENT) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 90.0 Td (G1   Loaded transit to the shelf) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 29) Tj ET
+endstream
+endobj
+62 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 63 0 R >>
+endobj
+63 0 obj
+<< /Length 5308 >>
+stream
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 728.4 Td (goto\(*shelf_approach, slow=True\) drives to the odometry pose \(-0.83, 0, pi\). slow=True caps speed at 0.14 m/s and) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 715.2 Td (turn rate at 0.35 rad/s, because arm reaction torque through a rigidly held payload slips the wheels and corrupts) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 701.9 Td (odometry. On arrival the reached pose is logged, which is your direct read-out of accumulated drift.) Tj ET
+0.955 0.955 0.930 rg 54.0 659.6 504.0 33.6 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 679.1 Td ([mission_node] [bowl] upright; navigating to shelf) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 668.2 Td ([mission_node] goto arrived: odom=\(-0.792, -0.008, yaw -3.14\)) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 641.2 Td (G2   Find the shelf with the LiDAR) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 626.6 Td (dock_to_shelf\(\) takes over because the odometry pose alone is not trusted. It calls _dock_servo\(\), which repeatedly) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 613.4 Td (asks _board_cluster\(\) for the shelf back board: contiguous scan returns within +/-0.9 rad and 1.6 m, at least 3 beams,) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 600.1 Td (physical width between 0.15 and 0.70 m, and standing out in depth from the beams just outside its edges. When) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 586.9 Td (found, the robot servos on range error toward shelf_stop_range \(0.594 m\) and on bearing error toward zero,) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 573.6 Td (converging within 2 cm and 0.04 rad.) Tj ET
+0.955 0.955 0.930 rg 54.0 542.1 504.0 22.8 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 550.8 Td ([mission_node] docked at shelf: board range 0.586 m, bearing 0.035) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 524.5 Td (If no board is visible it sweeps a bounded +/-40 degrees rather than spinning freely. A reported dock is cross-checked) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 511.3 Td (against odometry and rejected as a phantom if they disagree by more than 0.6 m. On failure the robot reverses 0.35 m) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 498.0 Td (\(so the arms and payload clear the board before turning\), re-approaches and retries once; if that also fails it places at) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 484.8 Td (the odometry pose - a bounded fallback.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 465.8 Td (G3   Lower into this object's own slot) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 451.2 Td (move_arms\(place_waypoints\(s, place_z, y_off=place_y_off\)\) lowers the upright object to its release height, shifted) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 437.9 Td (laterally by that object's place_y_off so the bottle, bowl and box each occupy a different part of the 0.40 m slab and) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 424.7 Td (cannot knock each other over.) Tj ET
+0.955 0.955 0.930 rg 54.0 393.2 504.0 22.8 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 401.8 Td ([mission_node] [bowl] placing on shelf \(lateral offset +0.10 m\)) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 374.8 Td (G4   Release, with confirmation) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 360.2 Td (set_grasp\(name, False\) destroys the rigid joint and waits for "detached" on the state topic, retrying once more if) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 346.9 Td (unconfirmed. This is the step that must not be fire-and-forget: an unconfirmed release leaves the object welded to the) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 333.7 Td (palm, and it then gets dragged off the shelf, blocks the camera and snags on the shelf.) Tj ET
+BT /F2 10.4 Tf 0.080 0.240 0.440 rg 54.0 314.6 Td (G5   Clear, retreat, tuck) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 300.0 Td (grippers\(open_pos\) opens the hands, move_arms\(clear_waypoints\(...\)\) lifts them straight up by CLEAR_DZ \(0.08 m\)) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 286.8 Td (at the same lateral position, drive_odom\(-backup_dist\) reverses 0.6 m clear of the shelf, and tuck\(\) folds the arms for) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 273.5 Td (travel.) Tj ET
+0.955 0.955 0.930 rg 54.0 242.1 504.0 22.8 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 250.7 Td ([mission_node] [bowl] released; backing away) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 217.6 Td (Stage H - Loop and termination) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 201.0 Td (Control returns to the top of the per-object loop for the next name. When the list is exhausted the base is stopped and) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 187.7 Td (the final line is printed. Any object that failed was released, tucked and backed away from inside the except branch, so) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 174.5 Td (the mission always reaches this line rather than hanging.) Tj ET
+0.955 0.955 0.930 rg 54.0 143.0 504.0 22.8 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 151.6 Td ([mission_node] MISSION COMPLETE: all detected fallen objects processed) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 30) Tj ET
+endstream
+endobj
+64 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 65 0 R >>
+endobj
+65 0 obj
+<< /Length 6381 >>
+stream
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 721.0 Td (12.  Tuning Cookbook) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 715.0 m 558.0 715.0 l S
+0.900 0.930 0.970 rg 54.0 685.6 504.0 17.4 re f
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 58.0 691.4 Td (Symptom) Tj ET
+BT /F2 8.6 Tf 0.080 0.200 0.380 rg 239.4 691.4 Td (What to change) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 675.0 Td (An object is never detected) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 675.0 Td (Widen that object's hsv_lo / hsv_hi in mission_params.yaml, or lower min_area.) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 663.7 Td (Lower the SATURATION floor \(the second number of hsv_lo\) if lighting is washing) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 652.3 Td (the colour out) Tj ET
+0.972 0.975 0.980 rg 54.0 621.9 504.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 637.0 Td (Something that is not the object gets) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 625.6 Td (detected) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 637.0 Td (Raise that object's saturation floor, or desaturate the scenery that is matching) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 610.3 Td (Robot stops too far from or too close to the) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 598.9 Td (object before grasping) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 610.3 Td (grasp_forward, and approach_stop_range if the handover to the blind creep is) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 598.9 Td (happening too early or late) Tj ET
+0.972 0.975 0.980 rg 54.0 579.8 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 583.6 Td (Fingers hit the object or close on nothing) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 583.6 Td (That object's lying_z, s, close and grasp_z_off) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 568.2 Td (Object ends up too high or too low on the) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 556.9 Td (shelf) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 568.2 Td (That object's z_place) Tj ET
+0.972 0.975 0.980 rg 54.0 537.8 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 541.5 Td (Two objects collide on the shelf) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 541.5 Td (Their place_y_off values \(they must differ by more than the object widths\)) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 526.2 Td (Robot parks badly at the shelf) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 526.2 Td (shelf_approach for the coarse pose, shelf_stop_range for the final) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 514.8 Td (LiDAR-measured stand-off) Tj ET
+0.972 0.975 0.980 rg 54.0 484.4 504.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 499.5 Td (Docking never finds the board) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 499.5 Td (The width window and depth contrast threshold in _board_cluster, and max_range) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 488.1 Td (/ half_fov) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 472.8 Td (Robot drives too fast or too slowly) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 472.8 Td (v_lin, w_rot, scan_w; the loaded transit caps are inside goto\(slow=True\)) Tj ET
+0.972 0.975 0.980 rg 54.0 453.7 504.0 14.4 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 457.4 Td (Arms look sluggish or droop) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 457.4 Td (position_proportional_gain in ros2_control.xacro - check this FIRST) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 442.1 Td (Arms move jerkily between waypoints) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 442.1 Td (The dt values passed to move_arms, and see the note below about velocities) Tj ET
+0.972 0.975 0.980 rg 54.0 411.6 504.0 25.7 re f
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 426.7 Td ("arm trajectory did not fully converge") Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 58.0 415.4 Td (appears often) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 426.7 Td (The tolerance and extra_wait in send_pair, or the real cause: something is) Tj ET
+BT /F1 8.6 Tf 0.150 0.150 0.150 rg 239.4 415.4 Td (physically blocking the arm) Tj ET
+0.910 0.960 0.910 rg 54.0 336.0 504.0 66.6 re f
+0.200 0.550 0.280 rg 54.0 336.0 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 385.6 Td (The one improvement worth making first) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 372.1 Td (Trajectory points currently carry positions only, so the controllers interpolate linearly between waypoints. Adding) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 358.9 Td (velocities \(finite differences between waypoints, zero at the ends\) in arm_commander._point makes the controllers) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 345.8 Td (use cubic splines instead. It is a small change and it is the single largest visual improvement available.) Tj ET
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 310.0 Td (13.  Running the Offline Tests) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 304.0 m 558.0 304.0 l S
+0.955 0.955 0.930 rg 54.0 193.4 504.0 98.6 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 277.8 Td (cd src/kobuki_bimanual_behavior) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 266.9 Td (python3 test/test_ik.py) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 256.1 Td () Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 245.3 Td (expected output:) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 234.5 Td (  PASS test_mission_choreography_reachable) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 223.6 Td (  PASS test_roundtrip_grid) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 212.8 Td (  PASS test_tuck_pose_within_limits) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 202.0 Td (  PASS test_unreachable_raises) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 175.8 Td (No ROS, no Gazebo, no build required - it imports only ik.py and choreography.py. Run it after ANY change to link) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 162.5 Td (lengths, joint limits, grasp offsets, placement offsets or choreography constants. If you change geometry in the xacro,) Tj ET
+BT /F1 9.6 Tf 0.130 0.130 0.130 rg 54.0 149.3 Td (change the matching constants in ik.py and let this suite confirm the mission is still reachable.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 124.1 Td (Static checks worth repeating) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 31) Tj ET
+endstream
+endobj
+66 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 67 0 R >>
+endobj
+67 0 obj
+<< /Length 1074 >>
+stream
+0.955 0.955 0.930 rg 54.0 639.4 504.0 98.6 re f
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 723.8 Td (# every xacro / SDF / manifest parses) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 713.0 Td (python3 -c "import xml.etree.ElementTree as ET, glob; [ET.parse\(f\) for f in glob.glob\('src/**/*.xacro', recursive=True\)]") Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 702.2 Td () Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 691.3 Td (# the URDF actually expands \(the real test of the xacro\)) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 680.5 Td (xacro src/kobuki_bimanual_description/urdf/robot.urdf.xacro > /tmp/r.urdf) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 669.7 Td () Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 658.9 Td (# all python compiles) Tj ET
+BT /F3 8.2 Tf 0.120 0.160 0.220 rg 60.0 648.0 Td (python3 -m py_compile src/kobuki_bimanual_behavior/kobuki_bimanual_behavior/*.py) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 32) Tj ET
+endstream
+endobj
+68 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 69 0 R >>
+endobj
+69 0 obj
+<< /Length 7251 >>
+stream
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 721.0 Td (14.  Gotchas for a Newcomer) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 715.0 m 558.0 715.0 l S
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 686.5 Td (Things that look like bugs but are not) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 670.3 Td (gz_frame_id SDF warnings) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 670.3 Td (Gazebo warns that gz_frame_id is not a standard SDF element under) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 658.0 Td (<sensor>. It is a gz-sim extension and it works. Harmless.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 643.6 Td (DetachableJoint errors in single-object) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 631.3 Td (worlds) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 643.6 Td (The robot always declares three grasp plugins; in a one-object world two of) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 631.3 Td (them cannot find their model, log an error and sit inert. Expected.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 617.0 Td ("Desired controller update period is) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 604.7 Td (slower than the gazebo simulation) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 592.3 Td (period") Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 617.0 Td (The manager runs at 200 Hz over a 1 ms physics step. Intentional and fine.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 578.0 Td (Duplicate name messages from DART) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 578.0 Td (Internal renaming of identically named collision shapes across included) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 565.7 Td (models. Cosmetic.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 551.3 Td (The robot spins fully once at the start) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 551.3 Td (That is the survey rotation. Shorter spins later are per-object reacquisition.) Tj ET
+BT /F2 12.5 Tf 0.100 0.280 0.480 rg 54.0 525.7 Td (Things that will bite you) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 509.5 Td (Geometry lives in two places) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 509.5 Td (The xacro and ik.py. Change one, change the other, then run the test suite.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 495.2 Td (Grasp joints start ATTACHED) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 495.2 Td (Any code path that skips the startup detach will begin with all three objects) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 482.9 Td (welded to the left palm.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 468.5 Td (The grasp is a weld, not friction) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 468.5 Td (A DetachableJoint fixed joint, per the design blueprint. Do not expect finger) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 456.2 Td (friction to hold anything, and do not tighten the fingers onto a welded object.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 441.9 Td (Self-collision is disabled) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 441.9 Td (Standard for solver stability, but it means the model will happily execute a) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 429.6 Td (self-intersecting pose. Correctness comes from the staging poses and the) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 417.2 Td (offline pose tests, not from physics.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 402.9 Td (Everything runs on sim time) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 402.9 Td (use_sim_time is true for every node and /clock is bridged. If you add a node,) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 390.6 Td (set it too, or your timing will be wrong.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 376.2 Td (odom equals world only because of) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 363.9 Td (where the robot spawns) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 376.2 Td (The robot starts at the origin, which is why shelf_approach can be a plain) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 363.9 Td (odometry coordinate. Move the spawn point and that parameter must move) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 351.6 Td (with it.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 337.3 Td (The mission runs in a worker THREAD) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 337.3 Td (run\(\) blocks with sleeps while rclpy.spin\(\) keeps callbacks alive in the main) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 324.9 Td (thread. If you add mission logic, put it in the thread, not in a callback.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 310.6 Td (Objects must lie with their axis toward) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 298.3 Td (the approach) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 310.6 Td (The two hands grip the two ENDS of the object. The scan hub enforces the) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 298.3 Td (approach direction; if you reposition objects in a world, keep their axes) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 237.0 285.9 Td (pointing roughly at the origin.) Tj ET
+BT /F2 17.0 Tf 0.060 0.130 0.250 rg 54.0 259.8 Td (15.  Glossary) Tj ET
+0.550 0.650 0.780 RG 1.10 w 54.0 253.8 m 558.0 253.8 l S
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 232.6 Td (xacro) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 232.6 Td (XML macro language. Expands into a URDF. Lets the robot be described with named) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 220.3 Td (constants and reusable macros - which is why one arm macro generates both arms.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 206.0 Td (URDF / SDF) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 206.0 Td (URDF describes the robot; SDF describes Gazebo worlds and models. Gazebo) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 193.6 Td (converts the spawned URDF into SDF internally.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 179.3 Td (ros2_control) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 179.3 Td (The hardware abstraction layer. Declares joint command and state interfaces;) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 167.0 Td (controllers are plugins that drive them.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 152.6 Td (gz_ros2_control) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 152.6 Td (The implementation of ros2_control that talks to Gazebo joints. Runs inside the Gazebo) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 140.3 Td (process, which is why controller logs appear with the gazebo prefix.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 126.0 Td (JTC) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 126.0 Td (JointTrajectoryController. Takes a JointTrajectory \(a list of timed joint positions\) and) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 113.7 Td (interpolates between the points.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 99.3 Td (spawner) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 99.3 Td (A short-lived process that asks the controller manager to load, configure and activate) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 87.0 Td (one controller, then exits. Its exit is what the launch chain waits on.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 33) Tj ET
+endstream
+endobj
+70 0 obj
+<< /Type /Page /Parent 2 0 R /Resources 3 0 R /MediaBox [0 0 612 792] /Contents 71 0 R >>
+endobj
+71 0 obj
+<< /Length 3320 >>
+stream
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 728.8 Td (ros_gz_bridge) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 728.8 Td (Translates messages between Gazebo transport and ROS 2. Nothing crosses between) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 716.5 Td (the two worlds without it.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 702.1 Td (DetachableJoint) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 702.1 Td (A gz-sim system plugin that can create or destroy a fixed joint at run time between two) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 689.8 Td (links. This project uses it as the grasp.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 675.5 Td (FK / IK) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 675.5 Td (Forward kinematics: joints to hand pose. Inverse kinematics: hand pose to joints. Both) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 663.2 Td (are implemented analytically in ik.py.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 648.8 Td (HSV) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 648.8 Td (Hue, Saturation, Value colour space. Hue identifies the colour family, which is far more) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 636.5 Td (lighting-stable than raw RGB. OpenCV uses H 0-179, S and V 0-255.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 622.2 Td (Odometry) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 622.2 Td (Pose estimated by integrating wheel rotation. Drifts, especially under wheel slip - which) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 609.8 Td (is exactly why the shelf is located with the LiDAR instead.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 595.5 Td (Ground-plane back-projection) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 595.5 Td (Recovering distance from a single image by assuming the bottom of an object touches) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 583.2 Td (a known floor plane, given a known camera height and tilt.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 568.9 Td (Scan hub) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 568.9 Td (This project's name for the central point the robot returns to before hunting each object,) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 556.5 Td (so every approach direction is repeatable.) Tj ET
+BT /F2 9.2 Tf 0.100 0.200 0.350 rg 54.0 542.2 Td (Staging pose) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 542.2 Td (An intermediate arm pose used so that joint-space interpolation between two poses) Tj ET
+BT /F1 9.2 Tf 0.150 0.150 0.150 rg 202.0 529.9 Td (cannot pass through the robot itself.) Tj ET
+0.940 0.960 0.990 rg 54.0 454.1 504.0 66.6 re f
+0.200 0.400 0.700 rg 54.0 454.1 3.5 66.6 re f
+BT /F2 10.0 Tf 0.080 0.200 0.400 rg 66.0 503.8 Td (Where to go next in the code) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 490.3 Td (Read mission_node.run\(\) top to bottom - it is the whole mission in about forty lines and every other module is called) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 477.1 Td (from it. Then read choreography._stations, which is the single geometric idea that the entire bimanual manipulation) Tj ET
+BT /F1 9.4 Tf 0.160 0.160 0.180 rg 66.0 463.9 Td (is built on.) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 54.0 22.0 Td (Kobuki Bimanual Manipulator - Developer Handover Guide) Tj ET
+BT /F1 7.5 Tf 0.45 0.45 0.45 rg 541.3 22.0 Td (p. 34) Tj ET
+endstream
+endobj
+72 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica /Encoding /WinAnsiEncoding >>
+endobj
+73 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica-Bold /Encoding /WinAnsiEncoding >>
+endobj
+74 0 obj
+<< /Type /Font /Subtype /Type1 /BaseFont /Courier /Encoding /WinAnsiEncoding >>
+endobj
+xref
+0 75
+0000000000 65535 f 
+0000000009 00000 n 
+0000000058 00000 n 
+0000000345 00000 n 
+0000000411 00000 n 
+0000000515 00000 n 
+0000004077 00000 n 
+0000004181 00000 n 
+0000010666 00000 n 
+0000010770 00000 n 
+0000013282 00000 n 
+0000013388 00000 n 
+0000016331 00000 n 
+0000016437 00000 n 
+0000021379 00000 n 
+0000021485 00000 n 
+0000028981 00000 n 
+0000029087 00000 n 
+0000032327 00000 n 
+0000032433 00000 n 
+0000038794 00000 n 
+0000038900 00000 n 
+0000041744 00000 n 
+0000041850 00000 n 
+0000049012 00000 n 
+0000049118 00000 n 
+0000053161 00000 n 
+0000053267 00000 n 
+0000060013 00000 n 
+0000060119 00000 n 
+0000064117 00000 n 
+0000064223 00000 n 
+0000070920 00000 n 
+0000071026 00000 n 
+0000071747 00000 n 
+0000071853 00000 n 
+0000079586 00000 n 
+0000079692 00000 n 
+0000081225 00000 n 
+0000081331 00000 n 
+0000088297 00000 n 
+0000088403 00000 n 
+0000091453 00000 n 
+0000091559 00000 n 
+0000100392 00000 n 
+0000100498 00000 n 
+0000102754 00000 n 
+0000102860 00000 n 
+0000108387 00000 n 
+0000108493 00000 n 
+0000117200 00000 n 
+0000117306 00000 n 
+0000119488 00000 n 
+0000119594 00000 n 
+0000124796 00000 n 
+0000124902 00000 n 
+0000128594 00000 n 
+0000128700 00000 n 
+0000134546 00000 n 
+0000134652 00000 n 
+0000135865 00000 n 
+0000135971 00000 n 
+0000141774 00000 n 
+0000141880 00000 n 
+0000147240 00000 n 
+0000147346 00000 n 
+0000153779 00000 n 
+0000153885 00000 n 
+0000155011 00000 n 
+0000155117 00000 n 
+0000162420 00000 n 
+0000162526 00000 n 
+0000165898 00000 n 
+0000165996 00000 n 
+0000166099 00000 n 
+trailer
+<< /Size 75 /Root 1 0 R >>
+startxref
+166195
+%%EOF

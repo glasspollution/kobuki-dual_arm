@@ -1,0 +1,145 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="mast_sensors">
+
+    <!-- twin mast rods per the design sheet top view: two posts, each
+         14 cm from the base center on the rear half (opposite the arm
+         mounts), symmetric about the centerline, with a crossbar on top
+         carrying the LiDAR (center) and the camera (forward bracket). -->
+    <link name="mast_link">
+      <!-- left rod at (-0.099, +0.099): r = sqrt(2)*0.099 = 0.14 m -->
+      <visual>
+        <origin xyz="0 0.099 ${(lidar_z-0.015-deck_top_z)/2}"/>
+        <geometry><cylinder radius="0.012" length="${lidar_z-0.015-deck_top_z}"/></geometry>
+        <material name="light_grey"/>
+      </visual>
+      <!-- right rod at (-0.099, -0.099) -->
+      <visual>
+        <origin xyz="0 -0.099 ${(lidar_z-0.015-deck_top_z)/2}"/>
+        <geometry><cylinder radius="0.012" length="${lidar_z-0.015-deck_top_z}"/></geometry>
+        <material name="light_grey"/>
+      </visual>
+      <!-- crossbar joining the rod tops -->
+      <visual>
+        <origin xyz="0 0 ${lidar_z-0.015-deck_top_z}"/>
+        <geometry><box size="0.03 0.24 0.02"/></geometry>
+        <material name="dark_grey"/>
+      </visual>
+      <!-- camera bracket reaching forward from the crossbar -->
+      <visual>
+        <origin xyz="${(cam_x-mast_x)/2} 0 ${cam_z-deck_top_z}" rpy="0 1.5708 0"/>
+        <geometry><cylinder radius="0.008" length="${cam_x-mast_x}"/></geometry>
+        <material name="dark_grey"/>
+      </visual>
+      <collision>
+        <origin xyz="0 0.099 ${(lidar_z-0.015-deck_top_z)/2}"/>
+        <geometry><cylinder radius="0.012" length="${lidar_z-0.015-deck_top_z}"/></geometry>
+      </collision>
+      <collision>
+        <origin xyz="0 -0.099 ${(lidar_z-0.015-deck_top_z)/2}"/>
+        <geometry><cylinder radius="0.012" length="${lidar_z-0.015-deck_top_z}"/></geometry>
+      </collision>
+      <collision>
+        <origin xyz="0 0 ${lidar_z-0.015-deck_top_z}"/>
+        <geometry><box size="0.03 0.24 0.02"/></geometry>
+      </collision>
+      <inertial>
+        <origin xyz="0 0 ${(lidar_z-deck_top_z)/2}"/>
+        <mass value="0.45"/>
+        <inertia ixx="4e-3" iyy="4e-3" izz="4e-3" ixy="0" ixz="0" iyz="0"/>
+      </inertial>
+    </link>
+    <joint name="mast_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="mast_link"/>
+      <origin xyz="${mast_x} 0 ${deck_top_z}"/>
+    </joint>
+
+    <!-- ============ 2D LiDAR @ 0.46 m ============ -->
+    <link name="lidar_link">
+      <visual>
+        <geometry><cylinder radius="0.035" length="0.04"/></geometry>
+        <material name="black"/>
+      </visual>
+      <collision>
+        <geometry><cylinder radius="0.035" length="0.04"/></geometry>
+      </collision>
+      <inertial>
+        <mass value="0.15"/>
+        <inertia ixx="1e-4" iyy="1e-4" izz="1e-4" ixy="0" ixz="0" iyz="0"/>
+      </inertial>
+    </link>
+    <joint name="lidar_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="lidar_link"/>
+      <origin xyz="${mast_x} 0 ${lidar_z}"/>
+    </joint>
+
+    <gazebo reference="lidar_link">
+      <sensor name="lidar" type="gpu_lidar">
+        <topic>scan</topic>
+        <gz_frame_id>lidar_link</gz_frame_id>
+        <update_rate>10</update_rate>
+        <lidar>
+          <scan>
+            <horizontal>
+              <samples>360</samples>
+              <resolution>1</resolution>
+              <min_angle>${-PI}</min_angle>
+              <max_angle>${PI}</max_angle>
+            </horizontal>
+          </scan>
+          <range>
+            <min>0.12</min>
+            <max>8.0</max>
+            <resolution>0.01</resolution>
+          </range>
+        </lidar>
+        <always_on>true</always_on>
+        <visualize>false</visualize>
+      </sensor>
+    </gazebo>
+
+    <!-- ============ RGB camera @ 0.42 m, 15 deg down ============ -->
+    <link name="camera_link">
+      <visual>
+        <geometry><box size="0.03 0.08 0.03"/></geometry>
+        <material name="dark_grey"/>
+      </visual>
+      <collision>
+        <geometry><box size="0.03 0.08 0.03"/></geometry>
+      </collision>
+      <inertial>
+        <mass value="0.08"/>
+        <inertia ixx="5e-5" iyy="5e-5" izz="5e-5" ixy="0" ixz="0" iyz="0"/>
+      </inertial>
+    </link>
+    <joint name="camera_joint" type="fixed">
+      <parent link="base_link"/>
+      <child link="camera_link"/>
+      <origin xyz="${cam_x} 0 ${cam_z}" rpy="0 ${cam_pitch} 0"/>
+    </joint>
+
+    <gazebo reference="camera_link">
+      <sensor name="camera" type="camera">
+        <topic>camera</topic>
+        <gz_frame_id>camera_link</gz_frame_id>
+        <update_rate>15</update_rate>
+        <camera>
+          <camera_info_topic>camera_info</camera_info_topic>
+          <horizontal_fov>1.204</horizontal_fov> <!-- 69 deg -->
+          <image>
+            <width>640</width>
+            <height>480</height>
+            <format>R8G8B8</format>
+          </image>
+          <clip><near>0.05</near><far>15.0</far></clip>
+        </camera>
+        <always_on>true</always_on>
+        <visualize>false</visualize>
+      </sensor>
+    </gazebo>
+
+  </xacro:macro>
+</robot>
